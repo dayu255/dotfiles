@@ -95,7 +95,7 @@ in
 
     # BEAM
     # erlang
-    # elixir
+    elixir
     # gleam
 
     # Python
