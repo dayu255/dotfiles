@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, username, ... }:
 
 let
   myWallpaper = pkgs.fetchurl {
@@ -144,9 +144,9 @@ in
   nix.settings.auto-optimise-store = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.dayu = {
+  users.users.${username} = {
     isNormalUser = true;
-    description = "dayu@dayu.jp";
+    description = "${username}";
     extraGroups = [
       "networkmanager"
       "wheel"

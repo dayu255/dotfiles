@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  lib,
-  ...
-}:
+{ config, pkgs, inputs, lib, ... }:
 
 let
   myWallpaper = pkgs.fetchurl {
@@ -233,20 +227,20 @@ in
     };
 
     initContent = ''
-      	    	# WezTerm (OSC 7)
-      	    	__wezterm_set_cwd() {
-      	    	print -Pn "\e]7;file://%m$PWD\a"
-      			}
-      			chpwd_functions=(__wezterm_set_cwd $chpwd_functions)
+			# WezTerm (OSC 7)
+			__wezterm_set_cwd() {
+				print -Pn "\e]7;file://%m$PWD\a"
+			}
+			chpwd_functions=(__wezterm_set_cwd $chpwd_functions)
 
-      			# ssh-agent
-      			eval "$(ssh-agent -s)" > /dev/null
-      	
-      	    	# Copilot-CLI
-      	    	if (( $+commands[github-copilot-cli] )); then
-      				eval "$(github-copilot-cli alias -- zsh)"
-      	    	fi
-      		'';
+			# ssh-agent
+			eval "$(ssh-agent -s)" > /dev/null
+
+			# Copilot-CLI
+			if (( $+commands[github-copilot-cli] )); then
+			eval "$(github-copilot-cli alias -- zsh)"
+			fi
+		'';
   };
 
   # Thunderbird

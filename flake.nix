@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Zen-Browser
+		# Zen-Browser
     zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -43,6 +43,7 @@
           inherit system;
           specialArgs = {
             inherit inputs;
+						inherit username;
           };
           modules = [
             ./nixos/lollipop/configuration.nix
