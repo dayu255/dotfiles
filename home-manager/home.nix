@@ -119,11 +119,10 @@ in
     # crun
     (writeShellApplication {
       name = "crun";
-      runtimeInputs = [ pkgs.gcc ];
       text = ''
-        		    	export CPLUS_INCLUDE_PATH="${pkgs.ac-library}/include"
-        			${builtins.readFile ./config/crun.sh}
-        			'';
+				export CPLUS_INCLUDE_PATH="${pkgs.ac-library}/include"
+				${builtins.readFile ./config/crun.sh}
+      '';
     })
   ];
 
@@ -143,10 +142,10 @@ in
   # git-cz
   home.file = {
     ".czrc".text = ''
-      			{
-      			"path": "cz-conventional-changelog"
-      			}
-      		'';
+			{
+			"path": "cz-conventional-changelog"
+			}
+		'';
   };
 
   home.file.".npmrc".text = ''
@@ -154,7 +153,7 @@ in
     	'';
 
   home.file.".config/nvim".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/config/nvim";
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/home-manager/config/nvim";
 
   home.file.".vimrc".source = ./config/vimrc;
 
