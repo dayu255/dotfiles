@@ -45,7 +45,7 @@
           inherit system;
           specialArgs = {
             inherit inputs;
-						inherit username;
+            inherit username;
           };
           modules = [
             ./nixos/lollipop/configuration.nix

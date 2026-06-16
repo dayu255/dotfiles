@@ -2,6 +2,7 @@
     "logo": {
         "type": "kitty",
         "source": "~/.config/home-manager/config/fastfetch/logo/nixos_logo_2.webp",
+        "source": "~/dotfiles/home-manager/config/fastfetch/logo/nixos_logo_2.webp",
         "height": 21,
         "width": 40,
         "padding": {
