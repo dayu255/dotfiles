@@ -159,6 +159,7 @@ in
 
   xdg.configFile."wezterm/wezterm.lua".source = ./config/wezterm.lua;
   xdg.configFile."fcitx5/profile".source = ./config/fcitx5/profile;
+  xdg.configFile."yazi/yazi.toml".source = ./config/yazi.toml;
   xdg.configFile."fastfetch/config.jsonc".source = ./config/fastfetch/nixos-01.jsonc;
 
   # 環境変数
