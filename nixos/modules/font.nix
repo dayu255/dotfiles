@@ -30,9 +30,6 @@
           "Noto Sans CJK JP"
           "Noto Color Emoji"
         ];
-        monospace = [
-					"Terminus"
-        ];
         emoji = [ "Noto Color Emoji" ];
       };
     };

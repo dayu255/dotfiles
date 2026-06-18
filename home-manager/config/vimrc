@@ -3,8 +3,13 @@ set title
 set showcmd
 syntax enable
 
+set expandtab
 set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 
 set hlsearch
 set incsearch
 set wrapscan
+
+set pastetoggle=<F2>
