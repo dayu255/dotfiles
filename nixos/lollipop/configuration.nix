@@ -16,7 +16,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages;
 
   # Zram
   zramSwap = {
@@ -95,6 +95,7 @@ in
     prime = {
       offload.enable = true;
       offload.enableOffloadCmd = true;
+
       intelBusId = "PCI:0@0:2:0";
       nvidiaBusId = "PCI:2@0:0:0";
     };
@@ -174,6 +175,7 @@ in
     ccid
     opensc
     docker
+    busybox
 
     (writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
       			[General]
