@@ -16,7 +16,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Zram
   zramSwap = {
@@ -86,12 +86,15 @@ in
     "nvidia"
   ];
   hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
     nvidiaSettings = true;
+    open = true;
+
     modesetting.enable = true;
+
     powerManagement.enable = true;
     powerManagement.finegrained = true;
-    open = false;
+
     prime = {
       offload.enable = true;
       offload.enableOffloadCmd = true;
