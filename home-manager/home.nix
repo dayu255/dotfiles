@@ -88,6 +88,9 @@ in
     # SQL
     # sqruff
 
+    # Ruby
+    ruby
+
     # go
     go
     cobra-cli
@@ -104,6 +107,7 @@ in
     # JS/TS
     nodejs
     typescript
+    yarn
 
     # Rust
     rustc
