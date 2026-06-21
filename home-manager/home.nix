@@ -23,7 +23,6 @@ in
     wezterm
 
     # Editer
-    zed-editor
     vim-full
     neovim
     wl-clipboard
@@ -265,6 +264,45 @@ in
   # VScode
   programs.vscode = {
     enable = true;
+  };
+
+  # zed-editor
+  programs.zed-editor = {
+    enable = true;
+    userSettings = {
+      vim_mode = true;
+      relative_line_numbers = "enabled";
+
+      project_panel = {
+        dock = "left";
+      };
+      buffer_font_family = "HackGen35 Console NF";
+      buffer_font_size = 15;
+
+      hide_mouse = "on_typing";
+      format_on_save = "off";
+
+      ui_font_family = "sans-serif";
+      ui_font_size = 15;
+      disable_ai = true;
+
+      scrollbar = {
+        show = "never";
+      };
+      minimap = {
+        show = "never";
+      };
+
+      terminal = {
+        dock = "bottom";
+        font_family = "HackGen35 Console NF";
+        blinking = "off";
+        alternate_scroll = "on";
+      };
+
+      theme = "Kanagawa";
+    };
+    mutableUserSettings = true;
   };
 
   # GPG
