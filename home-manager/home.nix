@@ -284,7 +284,7 @@ in
       buffer_font_size = 15;
 
       hide_mouse = "on_typing";
-      format_on_save = "off";
+      format_on_save = "on";
 
       ui_font_family = "sans-serif";
       ui_font_size = 15;
