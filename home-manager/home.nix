@@ -23,6 +23,7 @@ in
     wezterm
 
     # Editer
+    zed-editor
     vim-full
     neovim
     wl-clipboard
