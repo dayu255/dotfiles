@@ -290,6 +290,14 @@ in
       ui_font_size = 15;
       disable_ai = true;
 
+      toolbar = {
+        breadcrumbs = false;
+        quick_actions = false;
+        selections_menu = false;
+        agent_review = false;
+        code_actions = false;
+      };
+
       scrollbar = {
         show = "never";
       };
