@@ -273,6 +273,7 @@ in
   # zed-editor
   programs.zed-editor = {
     enable = true;
+
     userSettings = {
       vim_mode = true;
       relative_line_numbers = "enabled";
@@ -314,6 +315,16 @@ in
 
       theme = "Kanagawa";
     };
+
+    extensions = [
+      "nix"
+      "dockerfile"
+      "docker-compose"
+      "html"
+      "ruby"
+      "kanagawa-themes"
+    ];
+
     mutableUserSettings = true;
   };
 
