@@ -282,7 +282,7 @@ in
         dock = "left";
       };
       buffer_font_family = "HackGen35 Console NF";
-      buffer_font_size = 15;
+      buffer_font_size = 14;
 
       hide_mouse = "on_typing";
       format_on_save = "on";
