@@ -107,6 +107,7 @@ in
     # JS/TS
     nodejs
     typescript
+    bun
     yarn
 
     # Rust
@@ -120,12 +121,12 @@ in
     ghc
     cabal-install
 
-    # crun
+    # qrun
     (writeShellApplication {
-      name = "crun";
+      name = "qrun";
       text = ''
-				export CPLUS_INCLUDE_PATH="${pkgs.ac-library}/include"
-				${builtins.readFile ./config/crun.sh}
+        export CPLUS_INCLUDE_PATH="${pkgs.ac-library}/include"
+        ${builtins.readFile ./config/qrun.sh}
       '';
     })
   ];
@@ -153,8 +154,8 @@ in
   };
 
   home.file.".npmrc".text = ''
-    		prefix=${config.home.homeDirectory}/.npm-global
-    	'';
+        prefix=${config.home.homeDirectory}/.npm-global
+      '';
 
   home.file.".config/nvim".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/home-manager/config/nvim";
@@ -299,6 +300,9 @@ in
         code_actions = false;
       };
 
+      collaboration_panel = {
+        botton = false;
+      };
       scrollbar = {
         show = "never";
       };
