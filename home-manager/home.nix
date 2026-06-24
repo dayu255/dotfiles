@@ -1,4 +1,10 @@
-{ config, pkgs, inputs, lib, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 
 let
   myWallpaper = pkgs.fetchurl {
@@ -147,15 +153,15 @@ in
   # git-cz
   home.file = {
     ".czrc".text = ''
-			{
-			"path": "cz-conventional-changelog"
-			}
-		'';
+      			{
+      			"path": "cz-conventional-changelog"
+      			}
+      		'';
   };
 
   home.file.".npmrc".text = ''
-        prefix=${config.home.homeDirectory}/.npm-global
-      '';
+    prefix=${config.home.homeDirectory}/.npm-global
+  '';
 
   home.file.".config/nvim".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/home-manager/config/nvim";
@@ -232,20 +238,20 @@ in
     };
 
     initContent = ''
-			# WezTerm (OSC 7)
-			__wezterm_set_cwd() {
-				print -Pn "\e]7;file://%m$PWD\a"
-			}
-			chpwd_functions=(__wezterm_set_cwd $chpwd_functions)
+      			# WezTerm (OSC 7)
+      			__wezterm_set_cwd() {
+      				print -Pn "\e]7;file://%m$PWD\a"
+      			}
+      			chpwd_functions=(__wezterm_set_cwd $chpwd_functions)
 
-			# ssh-agent
-			eval "$(ssh-agent -s)" > /dev/null
+      			# ssh-agent
+      			eval "$(ssh-agent -s)" > /dev/null
 
-			# Copilot-CLI
-			if (( $+commands[github-copilot-cli] )); then
-			eval "$(github-copilot-cli alias -- zsh)"
-			fi
-		'';
+      			# Copilot-CLI
+      			if (( $+commands[github-copilot-cli] )); then
+      			eval "$(github-copilot-cli alias -- zsh)"
+      			fi
+      		'';
   };
 
   # Thunderbird
@@ -319,6 +325,28 @@ in
 
       theme = "Kanagawa";
     };
+
+    userTasks = [
+      {
+        label = "Run with qrun";
+        command = "qrun";
+        args = [
+          "$ZED_FILE"
+        ];
+      }
+    ];
+
+    userKeymaps = [
+      {
+        context = "Workspace";
+        bindings = {
+          "ctrl-alt-n" = [
+            "task::Spawn"
+            { task_name = "Run with qrun"; }
+          ];
+        };
+      }
+    ];
 
     extensions = [
       "nix"
