@@ -333,6 +333,7 @@ in
         args = [
           "$ZED_FILE"
         ];
+        save = "current";
       }
     ];
 
