@@ -1,4 +1,9 @@
-{ config, pkgs, username, ... }:
+{
+  config,
+  pkgs,
+  username,
+  ...
+}:
 
 let
   myWallpaper = pkgs.fetchurl {

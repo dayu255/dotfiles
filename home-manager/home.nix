@@ -102,9 +102,9 @@ in
     cobra-cli
     goreleaser
 
-    # BEAM
-    # erlang
-    elixir
+    # BEAMs
+    # beam28Packages.erlang
+    # beam28Packages.elixir
     # gleam
 
     # Python
