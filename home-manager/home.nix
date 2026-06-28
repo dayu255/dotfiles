@@ -323,6 +323,15 @@ in
         alternate_scroll = "on";
       };
 
+      languages = {
+        HTML = {
+          tab_size = 2;
+        };
+        ERB = {
+          tab_size = 2;
+        };
+      };
+
       theme = "Kanagawa";
     };
 
