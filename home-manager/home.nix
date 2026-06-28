@@ -3,19 +3,13 @@
   pkgs,
   inputs,
   lib,
+  username,
+  myWallpaper,
   ...
 }:
-
-let
-  myWallpaper = pkgs.fetchurl {
-    url = "https://github.com/dayu255/assets/blob/main/flower.jpg?raw=true";
-    name = "flower.jpg";
-    hash = "sha256-2JcFtKoTr5f2XJLGzl0pcybD3LHM7QSQK+87W/ohgCc=";
-  };
-in
 {
-  home.username = "dayu";
-  home.homeDirectory = "/home/dayu";
+  home.username = "${username}";
+  home.homeDirectory = "/home/${username}";
 
   home.stateVersion = "25.11"; # Please read the comment before changing.
 
@@ -127,6 +121,11 @@ in
     ghc
     cabal-install
 
+    # Antigravity
+    inputs.antigravity-nix.packages.x86_64-linux.default # Base App
+    inputs.antigravity-nix.packages.x86_64-linux.google-antigravity-ide # IDE
+    inputs.antigravity-nix.packages.x86_64-linux.google-antigravity-cli # CLI
+
     # qrun
     (writeShellApplication {
       name = "qrun";
@@ -153,10 +152,10 @@ in
   # git-cz
   home.file = {
     ".czrc".text = ''
-      			{
-      			"path": "cz-conventional-changelog"
-      			}
-      		'';
+      {
+      "path": "cz-conventional-changelog"
+      }
+    '';
   };
 
   home.file.".npmrc".text = ''
@@ -209,7 +208,7 @@ in
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    dotDir = config.home.homeDirectory;
+
 
     oh-my-zsh = {
       enable = true;
@@ -238,20 +237,17 @@ in
     };
 
     initContent = ''
-      			# WezTerm (OSC 7)
-      			__wezterm_set_cwd() {
-      				print -Pn "\e]7;file://%m$PWD\a"
-      			}
-      			chpwd_functions=(__wezterm_set_cwd $chpwd_functions)
+      # WezTerm (OSC 7)
+      __wezterm_set_cwd() {
+        print -Pn "\e]7;file://%m$PWD\a"
+      }
+      chpwd_functions=(__wezterm_set_cwd $chpwd_functions)
 
-      			# ssh-agent
-      			eval "$(ssh-agent -s)" > /dev/null
-
-      			# Copilot-CLI
-      			if (( $+commands[github-copilot-cli] )); then
-      			eval "$(github-copilot-cli alias -- zsh)"
-      			fi
-      		'';
+      # Copilot-CLI
+      if (( $+commands[github-copilot-cli] )); then
+        eval "$(github-copilot-cli alias -- zsh)"
+      fi
+    '';
   };
 
   # Thunderbird
@@ -307,7 +303,7 @@ in
       };
 
       collaboration_panel = {
-        botton = false;
+        button = false;
       };
       scrollbar = {
         show = "never";

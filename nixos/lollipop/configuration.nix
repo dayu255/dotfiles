@@ -2,16 +2,9 @@
   config,
   pkgs,
   username,
+  myWallpaper,
   ...
 }:
-
-let
-  myWallpaper = pkgs.fetchurl {
-    url = "https://github.com/dayu255/assets/blob/main/flower.jpg?raw=true";
-    name = "flower.jpg";
-    hash = "sha256-2JcFtKoTr5f2XJLGzl0pcybD3LHM7QSQK+87W/ohgCc=";
-  };
-in
 {
   imports = [
   ];
@@ -55,18 +48,18 @@ in
     extraLocaleSettings = {
       LANGUAGE = "en_US.UTF-8";
       LC_ALL = "en_US.UTF-8";
-      LC_CTYPE = "en_US.UTF8";
-      LC_ADDRESS = "en_US.UTF8";
-      LC_IDENTIFICATION = "en_US.UTF8";
-      LC_MEASUREMENT = "en_US.UTF8";
+      LC_CTYPE = "en_US.UTF-8";
+      LC_ADDRESS = "en_US.UTF-8";
+      LC_IDENTIFICATION = "en_US.UTF-8";
+      LC_MEASUREMENT = "en_US.UTF-8";
       LC_MESSAGES = "en_US.UTF-8";
-      LC_MONETARY = "en_US.UTF8";
-      LC_NAME = "en_US.UTF8";
+      LC_MONETARY = "en_US.UTF-8";
+      LC_NAME = "en_US.UTF-8";
       LC_NUMERIC = "en_US.UTF-8";
-      LC_PAPER = "en_US.UTF8";
-      LC_TELEPHONE = "en_US.UTF8";
-      LC_TIME = "en_US.UTF8";
-      LC_COLLATE = "en_US.UTF8";
+      LC_PAPER = "en_US.UTF-8";
+      LC_TELEPHONE = "en_US.UTF-8";
+      LC_TIME = "en_US.UTF-8";
+      LC_COLLATE = "en_US.UTF-8";
     };
   };
 
@@ -169,7 +162,7 @@ in
 
   nix.settings.trusted-users = [
     "root"
-    "dayu"
+    "${username}"
   ];
 
   # Allow unfree packages
@@ -186,10 +179,13 @@ in
     busybox
 
     (writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
-      			[General]
-      			background="${myWallpaper}"
-      		'')
+      [General]
+      background="${myWallpaper}"
+    '')
   ];
+
+  # ssh-agent
+  programs.ssh.startAgent = true;
 
   # Docker deamon enable
   virtualisation.docker.enable = true;
