@@ -106,7 +106,7 @@
     uv
 
     # JS/TS
-    nodejs
+    nodejs_26
     typescript
     bun
     yarn
