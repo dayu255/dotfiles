@@ -61,6 +61,7 @@
     lmstudio
     github-copilot-cli
     qbittorrent
+    audacity
 
     # SNS
     discord
