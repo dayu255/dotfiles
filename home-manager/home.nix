@@ -307,7 +307,13 @@
         button = false;
       };
       scrollbar = {
-        show = "never";
+        show = "auto";
+        git_diff = false;
+        diagnostics = "all";
+        axes = {
+          horizontal = true;
+          vertical = true;
+        };
       };
       minimap = {
         show = "never";
