@@ -29,7 +29,7 @@ config.window_background_opacity = 0.8
 config.kde_window_background_blur = true
 config.window_decorations = "NONE"
 
-config.default_cursor_style = "SteadyBar"
+config.default_cursor_style = "BlinkingBlock"
 
 config.use_fancy_tab_bar = true
 config.tab_max_width = 80

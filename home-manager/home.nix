@@ -8,6 +8,10 @@
   ...
 }:
 {
+  imports = [
+    ./module/ssh/ssh.nix
+  ];
+
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
 
@@ -62,6 +66,8 @@
     github-copilot-cli
     qbittorrent
     audacity
+    bruno
+
 
     # SNS
     discord
@@ -190,6 +196,8 @@
 
     # ROS2
     ROS_DOMAIN_ID = "42";
+
+    SSH_ASKPASS_REQUIRE = "never";
   };
 
   # KDE Wallpaper
