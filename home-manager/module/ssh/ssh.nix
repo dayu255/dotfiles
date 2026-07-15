@@ -19,6 +19,10 @@
         ProxyCommand = "cloudflared access ssh --hostname %h";
       };
 
+      "ssh.dayu.jp" = {
+        ProxyCommand = "cloudflared access ssh --hostname %h";
+      };
+
       "mirai" = {
         HostName = "mirai.dayu.jp";
         User = "dayu";
