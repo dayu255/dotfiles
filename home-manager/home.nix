@@ -63,11 +63,12 @@
 
     # etc
     lmstudio
-    github-copilot-cli
+    # github-copilot-cli
     qbittorrent
     audacity
     bruno
-
+    podman
+    openssl
 
     # SNS
     discord
@@ -203,9 +204,6 @@
   # KDE Wallpaper
   programs.plasma = {
     enable = true;
-    workspace = {
-      wallpaper = "${pkgs.nixos-artwork.wallpapers.catppuccin-frappe}/share/backgrounds/nixos/nix-wallpaper-catppuccin-frappe.png";
-    };
     kscreenlocker.appearance = {
       wallpaper = "${myWallpaper}";
     };
