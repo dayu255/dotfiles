@@ -31,6 +31,9 @@
     neovim
     wl-clipboard
 
+    # Video-Editor
+    kdePackages.kdenlive
+
     # NixTools
     nixfmt
 
@@ -75,13 +78,13 @@
     signal-desktop
 
     # LaTeX
-    texliveBasic
+    # texliveBasic
 
     # Unity
-    unityhub
+    # unityhub
 
     # Blender
-    blender
+    # blender
 
     # C/C++
     gcc
@@ -119,8 +122,8 @@
     yarn
 
     # Rust
-    rustc
-    cargo
+    # rustc
+    # cargo
     # rustfmt
     # clippy
     # rust-analyzer
