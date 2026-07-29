@@ -155,16 +155,25 @@
   ];
 
   # 設定ファイルたち
-  home.file.".npmrc".text = ''
-    prefix=${config.home.homeDirectory}/.npm-global
-  '';
-  home.file.".config/nvim".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/home-manager/config/nvim";
-  home.file.".vimrc".source = ./config/vim/vimrc;
-  xdg.configFile."wezterm/wezterm.lua".source = ./config/wezterm/wezterm.lua;
-  xdg.configFile."fcitx5/profile".source = ./config/fcitx5/profile;
-  xdg.configFile."yazi/yazi.toml".source = ./config/yazi/yazi.toml;
-  xdg.configFile."fastfetch/config.jsonc".source = ./config/fastfetch/nixos-01.jsonc;
+  home.file = {
+    ".npmrc".text = ''
+      prefix=${config.home.homeDirectory}/.npm-global
+    '';
+    ".config/nvim".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/home-manager/config/nvim";
+    ".vimrc".source = ./config/vim/vimrc;
+    ".czrc".text = ''
+      {
+      "path": "cz-conventional-changelog"
+      }
+    '';
+  };
+  xdg.configFile = {
+    "wezterm/wezterm.lua".source = ./config/wezterm/wezterm.lua;
+    "fcitx5/profile".source = ./config/fcitx5/profile;
+    "yazi/yazi.toml".source = ./config/yazi/yazi.toml;
+    "fastfetch/config.jsonc".source = ./config/fastfetch/nixos-01.jsonc;
+  };
 
   # 環境変数
   home.sessionVariables = {
@@ -195,15 +204,6 @@
     config = {
       theme = "Catppuccin Frappe";
     };
-  };
-
-  # git-cz
-  home.file = {
-    ".czrc".text = ''
-      {
-      "path": "cz-conventional-changelog"
-      }
-    '';
   };
 
   # KDE Wallpaper

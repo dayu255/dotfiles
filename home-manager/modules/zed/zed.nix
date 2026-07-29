@@ -63,7 +63,7 @@
 
       lsp = {
         clangd = {
-          binaly = {
+          binary = {
             path = "clangd";
           };
         };
