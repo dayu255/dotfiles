@@ -10,6 +10,8 @@
 {
   imports = [
     ./module/ssh/ssh.nix
+    ./module/zed/zed.nix
+    ./module/zsh/zsh.nix
   ];
 
   home.username = "${username}";
@@ -29,6 +31,7 @@
     # Editer
     vim-full
     neovim
+    vscode
     wl-clipboard
 
     # Creative
@@ -62,8 +65,14 @@
     whois
 
     # Auth
+    gnupg
     yubikey-manager
     cloudflared
+
+    # SNS
+    discord
+    signal-desktop
+    thunderbird
 
     # etc
     lmstudio
@@ -73,10 +82,6 @@
     bruno
     podman
     openssl
-
-    # SNS
-    discord
-    signal-desktop
 
     # LaTeX
     # texliveBasic
@@ -91,6 +96,7 @@
     gcc
     gdb
     gnumake
+    clang-tools
     ac-library
 
     # Kawaii
@@ -143,10 +149,40 @@
       name = "qrun";
       text = ''
         export CPLUS_INCLUDE_PATH="${pkgs.ac-library}/include"
-        ${builtins.readFile ./config/qrun.sh}
+        ${builtins.readFile ./config/qrun/qrun.sh}
       '';
     })
   ];
+
+  # 設定ファイルたち
+  home.file.".npmrc".text = ''
+    prefix=${config.home.homeDirectory}/.npm-global
+  '';
+  home.file.".config/nvim".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/home-manager/config/nvim";
+  home.file.".vimrc".source = ./config/vim/vimrc;
+  xdg.configFile."wezterm/wezterm.lua".source = ./config/wezterm/wezterm.lua;
+  xdg.configFile."fcitx5/profile".source = ./config/fcitx5/profile;
+  xdg.configFile."yazi/yazi.toml".source = ./config/yazi/yazi.toml;
+  xdg.configFile."fastfetch/config.jsonc".source = ./config/fastfetch/nixos-01.jsonc;
+
+  # 環境変数
+  home.sessionVariables = {
+    PATH = "$HOME/.npm-global/bin:$PATH";
+    EDITOR = "vim";
+    # C++のAtCoderライブラリを読み込ませる
+    CPATH = "${config.home.homeDirectory}/.nix-profile/include";
+
+    NIXOS_OZONE_WL = "1";
+    # fcitx
+    # GTK_IM_MODULE = "fcitx";
+    # QT_IM_MODULE = "fcitx";
+    XMODIFIERS = "@im=fcitx";
+
+    # ROS2
+    ROS_DOMAIN_ID = "42";
+    SSH_ASKPASS_REQUIRE = "never";
+  };
 
   # bat
   programs.bat = {
@@ -170,41 +206,6 @@
     '';
   };
 
-  home.file.".npmrc".text = ''
-    prefix=${config.home.homeDirectory}/.npm-global
-  '';
-
-  home.file.".config/nvim".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/home-manager/config/nvim";
-
-  home.file.".vimrc".source = ./config/vimrc;
-
-  xdg.configFile."wezterm/wezterm.lua".source = ./config/wezterm.lua;
-  xdg.configFile."fcitx5/profile".source = ./config/fcitx5/profile;
-  xdg.configFile."yazi/yazi.toml".source = ./config/yazi.toml;
-  xdg.configFile."fastfetch/config.jsonc".source = ./config/fastfetch/nixos-01.jsonc;
-
-  # 環境変数
-  home.sessionVariables = {
-    PATH = "$HOME/.npm-global/bin:$PATH";
-    NIXOS_OZONE_WL = "1";
-
-    EDITOR = "vim";
-
-    # C++のAtCoderライブラリを読み込ませる
-    CPATH = "${config.home.homeDirectory}/.nix-profile/include";
-
-    # fcitx
-    # GTK_IM_MODULE = "fcitx";
-    # QT_IM_MODULE = "fcitx";
-    XMODIFIERS = "@im=fcitx";
-
-    # ROS2
-    ROS_DOMAIN_ID = "42";
-
-    SSH_ASKPASS_REQUIRE = "never";
-  };
-
   # KDE Wallpaper
   programs.plasma = {
     enable = true;
@@ -213,64 +214,12 @@
     };
   };
 
-  # Zsh
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-
-    oh-my-zsh = {
-      enable = true;
-      plugins = [
-        "git"
-        "sudo"
-        "docker"
-        "golang"
-        "rust"
-        "npm"
-        "fzf"
-      ];
-    };
-
-    shellAliases = {
-      proot = "cd $(git rev-parse --show-toplevel)";
-      dcbuild = "docker compose up -d --build";
-
-      "g++" = "g++ -I${pkgs.ac-library}/include";
-
-      ls = "eza";
-      ll = "eza -l";
-      la = "eza -a";
-      lla = "eza -la";
-      lt = "eza -al -T -L 3";
-    };
-
-    initContent = ''
-      # WezTerm (OSC 7)
-      __wezterm_set_cwd() {
-        print -Pn "\e]7;file://%m$PWD\a"
-      }
-      chpwd_functions=(__wezterm_set_cwd $chpwd_functions)
-
-      # Copilot-CLI
-      if (( $+commands[github-copilot-cli] )); then
-        eval "$(github-copilot-cli alias -- zsh)"
-      fi
-    '';
-  };
-
-  # Thunderbird
-  programs.thunderbird = {
-    enable = true;
-  };
-
   # Starship
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
   };
-  xdg.configFile."starship.toml".source = ./config/starship.toml;
+  xdg.configFile."starship.toml".source = ./config/starship/starship.toml;
 
   # Direnv
   programs.direnv = {
@@ -278,115 +227,7 @@
     enableZshIntegration = true;
   };
 
-  # VScode
-  programs.vscode = {
-    enable = true;
-  };
-
-  # zed-editor
-  programs.zed-editor = {
-    enable = true;
-
-    userSettings = {
-      vim_mode = true;
-      relative_line_numbers = "enabled";
-
-      project_panel = {
-        dock = "left";
-      };
-      buffer_font_family = "HackGen35 Console NF";
-      buffer_font_size = 14;
-
-      hide_mouse = "on_typing";
-      format_on_save = "on";
-
-      ui_font_family = "sans-serif";
-      ui_font_size = 15;
-      disable_ai = true;
-
-      toolbar = {
-        breadcrumbs = false;
-        quick_actions = false;
-        selections_menu = false;
-        agent_review = false;
-        code_actions = false;
-      };
-
-      collaboration_panel = {
-        button = false;
-      };
-      scrollbar = {
-        show = "auto";
-        git_diff = false;
-        diagnostics = "all";
-        axes = {
-          horizontal = true;
-          vertical = true;
-        };
-      };
-      minimap = {
-        show = "never";
-      };
-
-      terminal = {
-        dock = "bottom";
-        font_family = "HackGen35 Console NF";
-        blinking = "off";
-        alternate_scroll = "on";
-      };
-
-      languages = {
-        HTML = {
-          tab_size = 2;
-        };
-        ERB = {
-          tab_size = 2;
-        };
-      };
-
-      theme = "Kanagawa";
-    };
-
-    userTasks = [
-      {
-        label = "Run with qrun";
-        command = "qrun";
-        args = [
-          "$ZED_FILE"
-        ];
-        save = "current";
-      }
-    ];
-
-    userKeymaps = [
-      {
-        context = "Workspace";
-        bindings = {
-          "ctrl-alt-n" = [
-            "task::Spawn"
-            { task_name = "Run with qrun"; }
-          ];
-        };
-      }
-    ];
-
-    extensions = [
-      "nix"
-      "dockerfile"
-      "docker-compose"
-      "html"
-      "ruby"
-      "kanagawa-themes"
-    ];
-
-    mutableUserSettings = true;
-  };
-
-  # GPG
-  programs.gpg = {
-    enable = true;
-  };
-  # GPG-agent(パスワード打つとこ)
+  # GPG-agent(パスワード打つところ)
   services.gpg-agent = {
     enable = true;
     pinentry.package = pkgs.pinentry-curses;

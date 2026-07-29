@@ -8,7 +8,7 @@ local act = wezterm.action
 config.automatically_reload_config = true
 
 -- wayland
-config.enable_wayland = false
+config.enable_wayland = true
 
 -- Appearance
 config.color_scheme = "Kanagawa (Gogh)"
@@ -25,8 +25,9 @@ config.font = wezterm.font_with_fallback({
 	"Noto Sans Mono CJK JP",
 })
 config.use_ime = true
-config.window_background_opacity = 0.8
-config.kde_window_background_blur = true
+config.window_background_opacity = 0.7
+config.wayland_window_background_blur = true
+-- config.win_background_blur = true
 config.window_decorations = "NONE"
 
 config.default_cursor_style = "BlinkingBlock"
