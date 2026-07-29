@@ -37,6 +37,7 @@
     # Creative
     gimp
     kdePackages.kdenlive
+    audacity
 
     # NixTools
     nixfmt
@@ -78,7 +79,6 @@
     lmstudio
     # github-copilot-cli
     qbittorrent
-    audacity
     bruno
     podman
     openssl

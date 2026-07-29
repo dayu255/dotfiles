@@ -25,7 +25,7 @@ config.font = wezterm.font_with_fallback({
 	"Noto Sans Mono CJK JP",
 })
 config.use_ime = true
-config.window_background_opacity = 0.7
+config.window_background_opacity = 0.675
 config.wayland_window_background_blur = true
 -- config.win_background_blur = true
 config.window_decorations = "NONE"
