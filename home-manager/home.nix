@@ -9,9 +9,9 @@
 }:
 {
   imports = [
-    ./module/ssh/ssh.nix
-    ./module/zed/zed.nix
-    ./module/zsh/zsh.nix
+    ./modules/ssh/ssh.nix
+    ./modules/zed/zed.nix
+    ./modules/zsh/zsh.nix
   ];
 
   home.username = "${username}";
