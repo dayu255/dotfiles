@@ -176,7 +176,7 @@
     ccid
     opensc
     docker
-    busybox
+    coreutils
 
     (writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
       [General]

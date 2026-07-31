@@ -152,6 +152,16 @@
         ${builtins.readFile ./config/qrun/qrun.sh}
       '';
     })
+
+    # nix-template
+    (writeShellApplication {
+      name = "nix-template";
+      runtimeInputs = [ pkgs.coreutils ];
+      text = ''
+        FLAKE_NIX_TEMPLATE="${./config/nix-template/flake.nix.template}"
+        ${builtins.readFile ./config/nix-template/nix-template.sh}
+      '';
+    })
   ];
 
   # 設定ファイルたち
