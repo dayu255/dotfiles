@@ -1,9 +1,9 @@
 {
   inputs = {
-    # nixosはstable
+    # NixOS packages are stable
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
-    # home-managerはunstable
+    # Home-Manager packages are unstable
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # Home-Manager
@@ -50,7 +50,7 @@
         config.allowUnfree = true;
       };
 
-      myWallpaper = pkgs.fetchurl {
+      flowerwallpaper = pkgs.fetchurl {
         url = "https://github.com/dayu255/assets/blob/main/flower.jpg?raw=true";
         name = "flower.jpg";
         hash = "sha256-2JcFtKoTr5f2XJLGzl0pcybD3LHM7QSQK+87W/ohgCc=";
@@ -64,7 +64,7 @@
           specialArgs = {
             inherit inputs;
             inherit username;
-            inherit myWallpaper;
+            inherit flowerwallpaper;
           };
           modules = [
             ./nixos/lollipop/configuration.nix
@@ -81,7 +81,7 @@
         extraSpecialArgs = {
           inherit inputs;
           inherit username;
-          inherit myWallpaper;
+          inherit flowerwallpaper;
         };
         modules = [
           { nixpkgs.config.allowUnfree = true; }

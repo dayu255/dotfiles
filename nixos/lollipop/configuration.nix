@@ -2,7 +2,7 @@
   config,
   pkgs,
   username,
-  myWallpaper,
+  flowerwallpaper,
   ...
 }:
 {
@@ -180,7 +180,7 @@
 
     (writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
       [General]
-      background="${myWallpaper}"
+      background="${flowerwallpaper}"
     '')
   ];
 

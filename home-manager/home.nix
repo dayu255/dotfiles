@@ -4,7 +4,7 @@
   inputs,
   lib,
   username,
-  myWallpaper,
+  flowerwallpaper,
   ...
 }:
 {
@@ -210,7 +210,7 @@
   programs.plasma = {
     enable = true;
     kscreenlocker.appearance = {
-      wallpaper = "${myWallpaper}";
+      wallpaper = "${flowerwallpaper}";
     };
   };
 
