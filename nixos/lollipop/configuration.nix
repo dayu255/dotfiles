@@ -7,21 +7,24 @@
 }:
 {
   imports = [
+    ../modules/hyprland.nix
   ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Use latest kernel.
+  # Use latest linux kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Bootloader.
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
   # Zram
   zramSwap = {
     enable = true;
-    priority = 100;
     algorithm = "lz4";
     memoryPercent = 50;
+    priority = 100;
   };
 
   networking.hostName = "lollipop"; # Define your hostname.
@@ -71,6 +74,7 @@
     fcitx5.waylandFrontend = true;
     fcitx5.addons = with pkgs; [
       fcitx5-mozc
+      fcitx5-gtk
     ];
   };
 

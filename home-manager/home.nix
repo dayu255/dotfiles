@@ -12,6 +12,8 @@
     ./modules/ssh/ssh.nix
     ./modules/zed/zed.nix
     ./modules/zsh/zsh.nix
+    ./modules/hyprland/hyprland.nix
+    ./modules/waybar/waybar.nix
   ];
 
   home.username = "${username}";

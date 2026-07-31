@@ -19,6 +19,12 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    # Walker
+    walker = {
+      url = "github:abenz1267/walker";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     # Zen-Browser
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
@@ -88,6 +94,7 @@
 
           ./home-manager/home.nix
           plasma-manager.homeModules.plasma-manager
+          inputs.walker.homeManagerModules.default
         ];
       };
     };
