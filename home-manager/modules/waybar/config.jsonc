@@ -51,7 +51,7 @@
     "format-wifi": "󰤢   {bandwidthDownBits}",
     "format-ethernet": "󰈀   {bandwidthDownBits}",
     "format-disconnected": "󰤠   No Network",
-    "interval": 5,
+    "interval": 1,
     "tooltip": false,
   },
 

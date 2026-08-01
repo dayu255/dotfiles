@@ -205,7 +205,7 @@ in
         # Window management
         (bind "SUPER + Q" dsp.close)
         # (bind "SUPER + SHIFT + Q" dsp.exit)
-        (bind "SUPER + SHIFT + Q" (dsp.exec "wlogout -m 400"))
+        (bind "SUPER + CTRL + Q" (dsp.exec "wlogout -m 400"))
         (bind "SUPER + L" (dsp.exec "hyprlock"))
         (bind "SUPER + T" dsp.float)
         (bind "SUPER + F" dsp.fullscreen)
