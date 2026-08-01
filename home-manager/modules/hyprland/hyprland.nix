@@ -40,21 +40,46 @@ let
     ${pkgs.waybar}/bin/waybar &
     fcitx5 -d -r &
     gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
-    hyprlock &
   '';
 in
 {
+  # dependency
+  home.packages = with pkgs ; [
+    grimblast
+  ];
+  services.mako.enable = true;
+  programs.walker.enable = true;
+  programs.hyprlock.enable = true;
+  imports = [
+    ../waybar/waybar.nix
+    ../hyprpaper/hyprpaper.nix
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     configType = "lua";
 
     settings = {
-      monitor = [{
-        output = "eDP-1";
-        mode = "preferred";
-        position = "auto";
-        scale = "1.25";
-      }];
+      monitor = [
+        {
+          output = "eDP-1";
+          mode = "preferred";
+          position = "auto";
+          scale = "1.25";
+        }
+        {
+          output = "HDMI-A-1";
+          mode = "highrr";
+          position = "auto";
+          scale = "1";
+        }
+        {
+          output = "";
+          mode = "preferred";
+          position = "auto";
+          scale = "1";
+        }
+      ];
 
       config = {
         general = {
@@ -146,7 +171,8 @@ in
         (bind "SUPER + RETURN" (dsp.exec "wofi"))
         (bind "SUPER + B" (dsp.exec "zen"))
         (bind "SUPER + W" (dsp.exec "wezterm-gui"))
-        (bind "SUPER + Z" (dsp.exec "zed"))
+        (bind "SUPER + Z" (dsp.exec "zeditor"))
+        (bind "SUPER + E" (dsp.exec "dolphin"))
         (bind "SUPER + SPACE" (dsp.exec "walker"))
         (bind "SUPER + CTRL + V" (dsp.exec "walker -m clipboard"))
         (bind "SUPER + M" (dsp.exec "kitty nvim ~/Cortex/00_NOTES/temp.md"))
@@ -162,7 +188,7 @@ in
 
         # Window management
         (bind "SUPER + Q" dsp.close)
-        (bind "SUPER + SHIFT + Q" dsp.exit)
+        # (bind "SUPER + SHIFT + Q" dsp.exit)
         (bind "SUPER + CTRL + Q" (dsp.exec "hyprlock"))
         (bind "SUPER + T" dsp.float)
         (bind "SUPER + F" dsp.fullscreen)
@@ -198,9 +224,13 @@ in
         # Mouse move/resize
         (bindOpts "SUPER + mouse:272" dsp.drag { mouse = true; })
         (bindOpts "SUPER + mouse:273" dsp.resize { mouse = true; })
+
+        # Move window between monitors
+        (bind "SUPER + ALT + left" (dsp.exec "hyprctl dispatch movewindow mon:l"))
+        (bind "SUPER + ALT + right" (dsp.exec "hyprctl dispatch movewindow mon:r"))
+        (bind "SUPER + ALT + up" (dsp.exec "hyprctl dispatch movewindow mon:u"))
+        (bind "SUPER + ALT + down" (dsp.exec "hyprctl dispatch movewindow mon:d"))
       ] ++ workspaceBinds;
     };
   };
-
-  programs.walker.enable = true;
 }

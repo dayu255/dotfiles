@@ -13,7 +13,6 @@
     ./modules/zed/zed.nix
     ./modules/zsh/zsh.nix
     ./modules/hyprland/hyprland.nix
-    ./modules/waybar/waybar.nix
   ];
 
   home.username = "${username}";
@@ -166,7 +165,7 @@
     })
   ];
 
-  # 設定ファイルたち
+  # config files
   home.file = {
     ".npmrc".text = ''
       prefix=${config.home.homeDirectory}/.npm-global

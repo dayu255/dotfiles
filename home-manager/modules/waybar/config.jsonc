@@ -5,7 +5,7 @@
 
   "modules-center": ["clock", "custom/weather"],
 
-  modules-right": [
+  "modules-right": [
     "pulseaudio",
     "custom/uptime",
     "backlight",
@@ -85,7 +85,7 @@
 
   "custom/power": {
     "tooltip": false,
-    "on-click": "wlogout &",
+    "on-click": "wlogout --margin 400 &",
     "format": "⏻"
   },
 
