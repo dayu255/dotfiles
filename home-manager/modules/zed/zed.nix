@@ -103,6 +103,8 @@
       "html"
       "ruby"
       "kanagawa-themes"
+      "git-firefly"
+      "toml"
     ];
 
     mutableUserSettings = true;

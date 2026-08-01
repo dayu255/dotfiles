@@ -58,6 +58,8 @@ in
     brightnessctl
     xdg-desktop-portal-gtk
     swayidle
+    imv
+    wf-recorder
   ];
   services.mako.enable = true;
   programs.walker.enable = true;
@@ -99,7 +101,7 @@ in
         general = {
           gaps_in = 5;
           gaps_out = 5;
-          border_size = 1;
+          border_size = 2;
           col = {
             active_border = "rgb(aa7bff)";
             inactive_border = "rgb(19003b)";
