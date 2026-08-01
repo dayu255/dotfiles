@@ -151,7 +151,7 @@
       name = "qrun";
       text = ''
         export CPLUS_INCLUDE_PATH="${pkgs.ac-library}/include"
-        ${builtins.readFile ./config/qrun/qrun.sh}
+        ${builtins.readFile ../pkgs/qrun/qrun.sh}
       '';
     })
 
@@ -160,8 +160,8 @@
       name = "nix-template";
       runtimeInputs = [ pkgs.coreutils ];
       text = ''
-        FLAKE_NIX_TEMPLATE="${./config/nix-template/flake.nix.template}"
-        ${builtins.readFile ./config/nix-template/nix-template.sh}
+        FLAKE_NIX_TEMPLATE="${../pkgs/nix-template/flake.nix.template}"
+        ${builtins.readFile ../pkgs/nix-template/nix-template.sh}
       '';
     })
   ];
