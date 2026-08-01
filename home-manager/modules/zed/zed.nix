@@ -20,6 +20,7 @@
       ui_font_family = "sans-serif";
       ui_font_size = 15;
       disable_ai = true;
+      use_system_path_prompts = false;
 
       toolbar = {
         breadcrumbs = false;

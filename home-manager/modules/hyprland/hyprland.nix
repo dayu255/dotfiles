@@ -20,6 +20,8 @@ let
     moveToSpecial = name: lua ''hl.dsp.window.move({ workspace = "special:${name}" })'';
     focusWorkspace = ws: lua ''hl.dsp.focus({ workspace = "${toString ws}" })'';
     moveToWorkspace = ws: lua ''hl.dsp.window.move({ workspace = "${toString ws}" })'';
+    moveToMonitor = dir: lua ''hl.dsp.window.move({ monitor = "${dir}" })'';
+    focusMonitor = dir: lua ''hl.dsp.focus({ monitor = "${dir}" })'';
     drag = lua "hl.dsp.window.drag()";
     resize = lua "hl.dsp.window.resize()";
     sendshortcut = mod: key: lua ''hl.dsp.send_shortcut({ mods = "${mod}", key = "${key}" })'';
@@ -37,21 +39,33 @@ let
   ) (lib.range 1 10);
 
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
+    ${pkgs.hyprpolkitagent}/bin/hyprpolkitagent &
     ${pkgs.waybar}/bin/waybar &
     fcitx5 -d -r &
-    gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+    ${pkgs.swayidle}/bin/swayidle -w \
+      timeout 300 '${pkgs.hyprlock}/bin/hyprlock' \
+      timeout 600 'hyprctl dispatch dpms off' \
+        resume 'hyprctl dispatch dpms on' \
+      before-sleep '${pkgs.hyprlock}/bin/hyprlock' &
   '';
 in
 {
   # dependency
   home.packages = with pkgs ; [
+    kdePackages.dolphin
     grimblast
+    hyprpolkitagent
+    brightnessctl
+    xdg-desktop-portal-gtk
+    swayidle
   ];
   services.mako.enable = true;
   programs.walker.enable = true;
+  # programs.rofi.enable = true;
   programs.hyprlock.enable = true;
   imports = [
     ../waybar/waybar.nix
+    ../wlogout/wlogout.nix
     ../hyprpaper/hyprpaper.nix
   ];
 
@@ -95,7 +109,7 @@ in
         decoration = {
           rounding = 5;
           active_opacity = 1.0;
-          inactive_opacity = 1.0;
+          inactive_opacity = 0.95;
           blur = {
             enabled = true;
             size = 3;
@@ -168,11 +182,11 @@ in
 
       bind = [
         # App launchers
-        (bind "SUPER + RETURN" (dsp.exec "wofi"))
         (bind "SUPER + B" (dsp.exec "zen"))
         (bind "SUPER + W" (dsp.exec "wezterm-gui"))
         (bind "SUPER + Z" (dsp.exec "zeditor"))
         (bind "SUPER + E" (dsp.exec "dolphin"))
+        # (bind "SUPER + SPACE" (dsp.exec "rofi -show drun"))
         (bind "SUPER + SPACE" (dsp.exec "walker"))
         (bind "SUPER + CTRL + V" (dsp.exec "walker -m clipboard"))
         (bind "SUPER + M" (dsp.exec "kitty nvim ~/Cortex/00_NOTES/temp.md"))
@@ -189,7 +203,8 @@ in
         # Window management
         (bind "SUPER + Q" dsp.close)
         # (bind "SUPER + SHIFT + Q" dsp.exit)
-        (bind "SUPER + CTRL + Q" (dsp.exec "hyprlock"))
+        (bind "SUPER + SHIFT + Q" (dsp.exec "wlogout -m 400"))
+        (bind "SUPER + L" (dsp.exec "hyprlock"))
         (bind "SUPER + T" dsp.float)
         (bind "SUPER + F" dsp.fullscreen)
         (bind "SUPER + P" dsp.pseudo)
@@ -210,26 +225,31 @@ in
         # Special workspace
         (bind "SUPER + S" (dsp.toggleSpecial "magic"))
         (bind "SUPER + SHIFT + S" (dsp.moveToSpecial "magic"))
+        (bind "SUPER + CTRL + S" (dsp.moveToWorkspace "e+0"))
 
         # Scroll through workspaces
         (bind "SUPER + mouse_down" (dsp.focusWorkspace "e+1"))
         (bind "SUPER + mouse_up" (dsp.focusWorkspace "e-1"))
 
         # Volume keys
-        (bindOpts "XF86AudioRaiseVolume" (dsp.exec "wpctl set-volume @ 5%+") { locked = true; repeating = true; })
-        (bindOpts "XF86AudioLowerVolume" (dsp.exec "wpctl set-volume @ 5%-") { locked = true; repeating = true; })
-        (bindOpts "XF86AudioMute" (dsp.exec "wpctl set-mute @ toggle") { locked = true; })
-        (bindOpts "XF86AudioMicMute" (dsp.exec "wpctl set-mute u/DEFAULT_AUDIO_SOURCE@ toggle") { locked = true; })
+        (bindOpts "XF86AudioRaiseVolume" (dsp.exec "wpctl set-volume --limit 1.0 @DEFAULT_AUDIO_SINK@ 5%+") { locked = true; repeating = true; })
+        (bindOpts "XF86AudioLowerVolume" (dsp.exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-") { locked = true; repeating = true; })
+        (bindOpts "XF86AudioMute" (dsp.exec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") { locked = true; })
+        (bindOpts "XF86AudioMicMute" (dsp.exec "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle") { locked = true; })
+
+        # Brightness keys
+        (bindOpts "XF86MonBrightnessUp" (dsp.exec "brightnessctl -d intel_backlight set 5%+") { locked = true; repeating = true; })
+        (bindOpts "XF86MonBrightnessDown" (dsp.exec "brightnessctl -d intel_backlight set 5%-") { locked = true; repeating = true; })
 
         # Mouse move/resize
         (bindOpts "SUPER + mouse:272" dsp.drag { mouse = true; })
         (bindOpts "SUPER + mouse:273" dsp.resize { mouse = true; })
 
         # Move window between monitors
-        (bind "SUPER + ALT + left" (dsp.exec "hyprctl dispatch movewindow mon:l"))
-        (bind "SUPER + ALT + right" (dsp.exec "hyprctl dispatch movewindow mon:r"))
-        (bind "SUPER + ALT + up" (dsp.exec "hyprctl dispatch movewindow mon:u"))
-        (bind "SUPER + ALT + down" (dsp.exec "hyprctl dispatch movewindow mon:d"))
+        (bind "SUPER + ALT + left" (dsp.moveToMonitor "l"))
+        (bind "SUPER + ALT + right" (dsp.moveToMonitor "r"))
+        (bind "SUPER + ALT + up" (dsp.moveToMonitor "u"))
+        (bind "SUPER + ALT + down" (dsp.moveToMonitor "d"))
       ] ++ workspaceBinds;
     };
   };

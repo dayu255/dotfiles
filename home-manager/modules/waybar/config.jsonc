@@ -1,13 +1,12 @@
 {
   "layer": "top",
   "position": "top",
-  "modules-left": ["hyprland/workspaces"],
+  "modules-left": ["hyprland/workspaces", "custom/ip"],
 
-  "modules-center": ["clock", "custom/weather"],
+  "modules-center": ["clock"],
 
   "modules-right": [
     "pulseaudio",
-    "custom/uptime",
     "backlight",
     "battery",
     "network",
@@ -15,21 +14,20 @@
     "memory",
     "custom/docker",
     "tray",
-    "custom/lock",
-    "custom/power"
+    "custom/power",
   ],
 
   "hyprland/workspaces": {
     "format": "{name}: {icon}",
     "format-icons": {
       "active": "",
-      "default": ""
-    }
+      "default": "",
+    },
   },
 
   "tray": {
     "icon-size": 16,
-    "spacing": 10
+    "spacing": 10,
   },
 
   "custom/music": {
@@ -39,62 +37,72 @@
     "tooltip": false,
     "exec": "playerctl metadata --format='{{ artist }} - {{ title }}'",
     "on-click": "playerctl play-pause",
-    "max-length": 50
+    "max-length": 50,
   },
 
   "clock": {
     "timezone": "Asia/Tokyo",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "format": "{:%m/%d  %H:%M:%S}",
-    "interval": 1
+    "interval": 1,
   },
 
   "network": {
-    "format-wifi": "󰤢  {bandwidthDownBits}",
-    "format-ethernet": "󰈀  {bandwidthDownBits}",
-    "format-disconnected": "󰤠  No Network",
+    "format-wifi": "󰤢   {bandwidthDownBits}",
+    "format-ethernet": "󰈀   {bandwidthDownBits}",
+    "format-disconnected": "󰤠   No Network",
     "interval": 5,
-    "tooltip": false
+    "tooltip": false,
   },
 
   "cpu": {
     "interval": 1,
     "format": "  {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
-    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
   },
 
   "memory": {
-    "interval": 30,
-    "format": "   {used:0.1f}G/{total:0.1f}G"
+    "interval": 1,
+    "format": "   {used:0.1f}G/{total:0.1f}G",
   },
 
   "custom/uptime": {
     "format": "{}",
     "interval": 1600,
-    "exec": "sh -c '(uptime -p)'"
+    "exec": "sh -c '(uptime -p)'",
+  },
+
+  "battery": {
+    "format": "{icon}   {capacity}%",
+    "format-icons": ["", "", "", "", ""],
+  },
+
+  "backlight": {
+    "format": "{icon}   {percent}%",
+    "format-icons": [""],
   },
 
   "pulseaudio": {
-    "format": "{icon} {volume}%",
+    "format": "{icon}  {volume}%",
     "format-muted": "",
     "format-icons": {
-      "default": ["", "", " "]
+      "default": ["", "", " "],
     },
-    "on-click": "pavucontrol"
+    "on-click": "pavucontrol",
   },
 
   "custom/power": {
     "tooltip": false,
     "on-click": "wlogout --margin 400 &",
-    "format": "⏻"
+    "format": "⏻",
   },
 
   "custom/docker": {
     "format": "  {}",
     "return-type": "json",
-    "interval": 5,
+    "interval": 1,
     "exec": "$HOME/.config/waybar/script/docker-container",
-    "tooltip": true
+    "tooltip": true,
   },
 
   "custom/weather": {
@@ -102,6 +110,14 @@
     "tooltip": true,
     "interval": 1800,
     "exec": "$(pwd)/scripts/weather-stats/weather-stats",
-    "return-type": "json"
-  }
+    "return-type": "json",
+  },
+
+  "custom/ip": {
+    "exec": "$HOME/.config/waybar/script/ip-info",
+    "return-type": "json",
+    "interval": 60,
+    "format": "    {}",
+    "tooltip": true,
+  },
 }

@@ -51,6 +51,7 @@ threshold = 20
 style = 'bold #ffa500'
 
 [custom.docker]
+disabled = true
 when = "test $(docker ps -q 2>/dev/null | wc -l) -gt 0"
 command = "docker ps -q 2>/dev/null | wc -l | tr -d ' '"
 style = "blue"

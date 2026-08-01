@@ -73,6 +73,7 @@
 
     # SNS
     discord
+    vesktop
     signal-desktop
     thunderbird
 

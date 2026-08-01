@@ -157,6 +157,7 @@
       "networkmanager"
       "wheel"
       "docker"
+      "video"
     ];
     packages = with pkgs; [
       kdePackages.kate
@@ -181,6 +182,7 @@
     opensc
     docker
     coreutils
+    net-tools
 
     (writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
       [General]

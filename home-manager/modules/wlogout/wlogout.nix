@@ -20,7 +20,7 @@
       }
       {
         label = "logout";
-        action = "${pkgs.systemd}/bin/loginctl kill-session $XDG_SESSION_ID";
+        action = "${pkgs.hyprland}/bin/hyprctl dispatch 'hl.dsp.exit()'";
         text = "Logout";
         keybind = "e";
       }
@@ -29,18 +29,6 @@
         action = "${pkgs.systemd}/bin/systemctl suspend";
         text = "Suspend";
         keybind = "u";
-      }
-      {
-        label = "hibernate";
-        action = "${pkgs.systemd}/bin/systemctl hibernate";
-        text = "Hibernate";
-        keybind = "h";
-      }
-      {
-        label = "lock";
-        action = "${pkgs.hyprlock}/bin/hyprlock";
-        text = "Lock";
-        keybind = "l";
       }
     ];
   };
