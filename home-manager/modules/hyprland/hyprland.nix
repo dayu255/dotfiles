@@ -60,6 +60,7 @@ in
     swayidle
     imv
     wf-recorder
+    hyprpicker
   ];
   services.mako.enable = true;
   programs.walker.enable = true;
@@ -110,8 +111,8 @@ in
 
         decoration = {
           rounding = 5;
-          active_opacity = 0.975;
-          inactive_opacity = 0.85;
+          active_opacity = 1.00;
+          inactive_opacity = 0.9;
           blur = {
             enabled = true;
             size = 3;

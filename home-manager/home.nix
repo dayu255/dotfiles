@@ -41,12 +41,17 @@
     audacity
 
     # NixTools
+    nh
+    nvd
+    nix-output-monitor
     nixfmt
 
     # Git/GitHub
     github-cli
+    gh-dash
     cz-cli
     lazygit
+    delta
     onefetch
 
     # Monitor
@@ -54,6 +59,8 @@
     speedtest-cli
     htop
     btop
+    bottom
+    procs
     ncdu
     dust
 
@@ -62,14 +69,18 @@
     eza
     fzf
     ouch
+    ripgrep
+    duf
+    zoxide
 
     # Network
     whois
 
-    # Auth
+    # Auth / Security
     gnupg
     yubikey-manager
     cloudflared
+    openssl
 
     # SNS
     discord
@@ -79,11 +90,9 @@
 
     # etc
     lmstudio
-    # github-copilot-cli
     qbittorrent
     bruno
     podman
-    openssl
 
     # LaTeX
     # texliveBasic
@@ -237,6 +246,7 @@
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
+    nix-direnv.enable = true;
   };
 
   # GPG-agent(パスワード打つところ)
