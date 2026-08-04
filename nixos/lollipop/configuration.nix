@@ -143,6 +143,10 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  services.logind.settings.Login = {
+    HandleLidSwitch = "suspend";
+  };
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"

@@ -42,23 +42,19 @@ let
     ${pkgs.hyprpolkitagent}/bin/hyprpolkitagent &
     ${pkgs.waybar}/bin/waybar &
     fcitx5 -d -r &
-    ${pkgs.swayidle}/bin/swayidle -w \
-      timeout 300 '${pkgs.hyprlock}/bin/hyprlock' \
-      timeout 600 'hyprctl dispatch dpms off' \
-        resume 'hyprctl dispatch dpms on' \
-      before-sleep '${pkgs.hyprlock}/bin/hyprlock' &
+    hypridle &
     nm-applet --indicator
   '';
 in
 {
-  # dependency
+  # Dependency====================
   home.packages = with pkgs ; [
     kdePackages.dolphin
     grimblast
     hyprpolkitagent
     brightnessctl
     xdg-desktop-portal-gtk
-    swayidle
+    hypridle
     imv
     wf-recorder
     hyprpicker
@@ -66,13 +62,14 @@ in
   ];
   services.mako.enable = true;
   programs.walker.enable = true;
-  # programs.rofi.enable = true;
   programs.hyprlock.enable = true;
   imports = [
     ../waybar/waybar.nix
     ../wlogout/wlogout.nix
     ../hyprpaper/hyprpaper.nix
+    ../hypridle/hypridle.nix
   ];
+  # ==============================
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -245,6 +242,9 @@ in
         # Brightness keys
         (bindOpts "XF86MonBrightnessUp" (dsp.exec "brightnessctl -d intel_backlight set 5%+") { locked = true; repeating = true; })
         (bindOpts "XF86MonBrightnessDown" (dsp.exec "brightnessctl -d intel_backlight set 5%-") { locked = true; repeating = true; })
+
+        # Lib close
+        (bindOpts "switch:on:Lid Switch" (dsp.exec "${pkgs.systemd}/bin/systemctl suspend") { locked = true; })
 
         # Mouse move/resize
         (bindOpts "SUPER + mouse:272" dsp.drag { mouse = true; })
