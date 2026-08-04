@@ -75,6 +75,7 @@
 
     # Network
     whois
+    oha
 
     # Auth / Security
     gnupg

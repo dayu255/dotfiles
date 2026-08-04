@@ -47,6 +47,7 @@ let
       timeout 600 'hyprctl dispatch dpms off' \
         resume 'hyprctl dispatch dpms on' \
       before-sleep '${pkgs.hyprlock}/bin/hyprlock' &
+    nm-applet --indicator
   '';
 in
 {
@@ -61,6 +62,7 @@ in
     imv
     wf-recorder
     hyprpicker
+    networkmanagerapplet
   ];
   services.mako.enable = true;
   programs.walker.enable = true;
