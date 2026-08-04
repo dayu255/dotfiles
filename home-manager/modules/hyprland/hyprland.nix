@@ -16,6 +16,7 @@ let
     layout = msg: lua ''hl.dsp.layout("${msg}")'';
     focus = dir: lua ''hl.dsp.focus({ direction = "${dir}" })'';
     swap = dir: lua ''hl.dsp.window.swap({ direction = "${dir}" })'';
+    moveDir = dir: lua ''hl.dsp.window.move({ direction = "${dir}" })'';
     toggleSpecial = name: lua ''hl.dsp.workspace.toggle_special("${name}")'';
     moveToSpecial = name: lua ''hl.dsp.window.move({ workspace = "special:${name}" })'';
     focusWorkspace = ws: lua ''hl.dsp.focus({ workspace = "${toString ws}" })'';
@@ -223,6 +224,12 @@ in
         (bind "SUPER + SHIFT + right" (dsp.swap "right"))
         (bind "SUPER + SHIFT + up" (dsp.swap "up"))
         (bind "SUPER + SHIFT + down" (dsp.swap "down"))
+
+        # Move windows(ウィンドウ自体の移動)
+        (bind "SUPER + CTRL + left" (dsp.moveDir "l"))
+        (bind "SUPER + CTRL + right" (dsp.moveDir "r"))
+        (bind "SUPER + CTRL + up" (dsp.moveDir "u"))
+        (bind "SUPER + CTRL + down" (dsp.moveDir "d"))
 
         # Special workspace
         (bind "SUPER + S" (dsp.toggleSpecial "magic"))
