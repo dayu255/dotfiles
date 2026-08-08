@@ -50,6 +50,7 @@ button {
 }
 
 #custom-music,
+#bluetooth,
 #tray,
 #backlight,
 #clock,
@@ -109,6 +110,10 @@ button {
 
 #custom-docker {
     color: #85c1dc;
+}
+
+#bluetooth {
+    color: #8caaee;
 }
 
 #custom-ip {

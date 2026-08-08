@@ -44,7 +44,7 @@ let
     ${pkgs.waybar}/bin/waybar &
     fcitx5 -d -r &
     hypridle &
-    nm-applet --indicator
+    nm-applet --indicator &
   '';
 in
 {
@@ -60,15 +60,22 @@ in
     wf-recorder
     hyprpicker
     networkmanagerapplet
+    pwvucontrol
+    overskride
   ];
+
+  # 通知
   services.mako.enable = true;
-  programs.walker.enable = true;
+
+  # ロックするやつ
   programs.hyprlock.enable = true;
+
   imports = [
     ../waybar/waybar.nix
     ../wlogout/wlogout.nix
     ../hyprpaper/hyprpaper.nix
     ../hypridle/hypridle.nix
+    ../walker/walker.nix
   ];
   # ==============================
 
@@ -100,12 +107,12 @@ in
 
       config = {
         general = {
-          gaps_in = 5;
-          gaps_out = 5;
+          gaps_in = 4;
+          gaps_out = 4;
           border_size = 2;
           col = {
             active_border = "rgb(aa7bff)";
-            inactive_border = "rgb(19003b)";
+            inactive_border = "rgb(303030)";
           };
         };
 
@@ -146,6 +153,10 @@ in
         };
       };
 
+      env = [
+        { _args = [ "LANG" "ja_JP.UTF-8" ]; }
+      ];
+
       curve = [{
         _args = [
           "myBezier"
@@ -165,13 +176,26 @@ in
         { leaf = "workspaces"; enabled = true; speed = 6; bezier = "default"; }
       ];
 
-      window_rule = [{
-        match = {
-          class = "^(kitty)$";
-          title = "^(bw-unlock)$";
-        };
-        float = true;
-      }];
+      window_rule = [
+        {
+          match = {
+            class = "^com.saivert.pwvucontrol$";
+          };
+          float = true;
+        }
+        {
+          match = {
+            class = "^blueman-manager$";
+          };
+          float = true;
+        }
+        {
+          match = {
+            class = "^io.github.kaii_lb.Overskride$";
+          };
+          float = true;
+        }
+      ];
 
       on = {
         _args = [
@@ -187,6 +211,7 @@ in
         # App launchers
         (bind "SUPER + B" (dsp.exec "zen"))
         (bind "SUPER + W" (dsp.exec "wezterm-gui"))
+        (bind "SUPER + G" (dsp.exec "ghostty"))
         (bind "SUPER + Z" (dsp.exec "zeditor"))
         (bind "SUPER + E" (dsp.exec "dolphin"))
         # (bind "SUPER + SPACE" (dsp.exec "rofi -show drun"))

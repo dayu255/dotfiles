@@ -1,6 +1,8 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 
+local local_hostname = wezterm.hostname():lower()
+
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 local act = wezterm.action
@@ -139,10 +141,9 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 			local dir = format_path(cwd)
 
 			-- SSH セッション: host がローカルマシン名でない場合のみ [hostname]dir 形式
-			local local_host = wezterm.hostname():lower()
 			local remote_host = (host or ""):lower()
 			-- ローカルとみなすホスト名のリスト
-			local local_hosts = { local_host, "localhost" }
+			local local_hosts = { local_hostname, "localhost" }
 			local is_local = false
 			for _, h in ipairs(local_hosts) do
 				if remote_host == h then

@@ -48,22 +48,22 @@
       "ja_JP.UTF-8/UTF-8"
       "en_US.UTF-8/UTF-8"
     ];
-    extraLocaleSettings = {
-      LANGUAGE = "en_US.UTF-8";
-      LC_ALL = "en_US.UTF-8";
-      LC_CTYPE = "en_US.UTF-8";
-      LC_ADDRESS = "en_US.UTF-8";
-      LC_IDENTIFICATION = "en_US.UTF-8";
-      LC_MEASUREMENT = "en_US.UTF-8";
-      LC_MESSAGES = "en_US.UTF-8";
-      LC_MONETARY = "en_US.UTF-8";
-      LC_NAME = "en_US.UTF-8";
-      LC_NUMERIC = "en_US.UTF-8";
-      LC_PAPER = "en_US.UTF-8";
-      LC_TELEPHONE = "en_US.UTF-8";
-      LC_TIME = "en_US.UTF-8";
-      LC_COLLATE = "en_US.UTF-8";
-    };
+    # extraLocaleSettings = {
+    #   LANGUAGE = "en_US.UTF-8";
+    #   LC_ALL = "en_US.UTF-8";
+    #   LC_CTYPE = "en_US.UTF-8";
+    #   LC_ADDRESS = "en_US.UTF-8";
+    #   LC_IDENTIFICATION = "en_US.UTF-8";
+    #   LC_MEASUREMENT = "en_US.UTF-8";
+    #   LC_MESSAGES = "en_US.UTF-8";
+    #   LC_MONETARY = "en_US.UTF-8";
+    #   LC_NAME = "en_US.UTF-8";
+    #   LC_NUMERIC = "en_US.UTF-8";
+    #   LC_PAPER = "en_US.UTF-8";
+    #   LC_TELEPHONE = "en_US.UTF-8";
+    #   LC_TIME = "en_US.UTF-8";
+    #   LC_COLLATE = "en_US.UTF-8";
+    # };
   };
 
   # inputMethod
@@ -132,6 +132,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
@@ -139,6 +140,10 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+
+  hardware.bluetooth.enable = true;
+  # hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;

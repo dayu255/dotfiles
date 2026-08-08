@@ -82,6 +82,29 @@
         ];
         save = "current";
       }
+      {
+        label = "Build C++ file for debug";
+        command = "g++";
+        args = [
+          "-g"
+          "-O0"
+          "$ZED_FILE"
+          "-o"
+          "$ZED_DIRNAME/$ZED_STEM"
+        ];
+        type = "shell";
+      }
+    ];
+
+    userDebug = [
+      {
+        adapter = "lldb";
+        label = "C++ (LLDB)";
+        mode = "debug";
+        program = "$ZED_DIRNAME/$ZED_STEM";
+        cwd = "$ZED_DIRNAME";
+        request = "launch";
+      }
     ];
 
     userKeymaps = [
@@ -105,6 +128,8 @@
       "kanagawa-themes"
       "git-firefly"
       "toml"
+      "astro"
+      "lua"
     ];
 
     mutableUserSettings = true;

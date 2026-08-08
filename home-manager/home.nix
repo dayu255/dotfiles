@@ -29,6 +29,7 @@
 
     # Terminal
     wezterm
+    ghostty
 
     # Editer
     vim-full
@@ -202,6 +203,7 @@
   home.sessionVariables = {
     PATH = "$HOME/.npm-global/bin:$PATH";
     EDITOR = "vim";
+    TERMINAL = "wezterm";
     # C++のAtCoderライブラリを読み込ませる
     CPATH = "${config.home.homeDirectory}/.nix-profile/include";
 

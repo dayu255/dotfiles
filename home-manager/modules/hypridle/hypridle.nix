@@ -15,12 +15,11 @@
       listener = [
         {
           timeout = 300;
-          on-timeout = "loginctl lock-session";
+          on-timeout = "${pkgs.systemd}/bin/loginctl lock-session";
         }
         {
           timeout = 600;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
+          on-timeout = "${pkgs.systemd}/bin/systemctl suspend";
         }
       ];
     };
