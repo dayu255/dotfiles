@@ -28,12 +28,26 @@ let
     sendshortcut = mod: key: lua ''hl.dsp.send_shortcut({ mods = "${mod}", key = "${key}" })'';
   };
 
-  bind = keys: dispatcher: { _args = [keys dispatcher]; };
-  bindOpts = keys: dispatcher: opts: { _args = [keys dispatcher opts]; };
+  bind = keys: dispatcher: {
+    _args = [
+      keys
+      dispatcher
+    ];
+  };
+  bindOpts = keys: dispatcher: opts: {
+    _args = [
+      keys
+      dispatcher
+      opts
+    ];
+  };
 
-  workspaceBinds = lib.concatMap (i:
-    let key = toString (lib.mod i 10);
-    in [
+  workspaceBinds = lib.concatMap (
+    i:
+    let
+      key = toString (lib.mod i 10);
+    in
+    [
       (bind "SUPER + ${key}" (dsp.focusWorkspace i))
       (bind "SUPER + SHIFT + ${key}" (dsp.moveToWorkspace i))
     ]
@@ -49,7 +63,7 @@ let
 in
 {
   # Dependency====================
-  home.packages = with pkgs ; [
+  home.packages = with pkgs; [
     kdePackages.dolphin
     grimblast
     hyprpolkitagent
@@ -155,26 +169,64 @@ in
       };
 
       env = [
-        { _args = [ "LANG" "ja_JP.UTF-8" ]; }
+        {
+          _args = [
+            "LANG"
+            "ja_JP.UTF-8"
+          ];
+        }
       ];
 
-      curve = [{
-        _args = [
-          "myBezier"
-          {
-            type = "bezier";
-            points = lua "{ {0.05, 0.9}, {0.1, 1.05} }";
-          }
-        ];
-      }];
+      curve = [
+        {
+          _args = [
+            "myBezier"
+            {
+              type = "bezier";
+              points = lua "{ {0.05, 0.9}, {0.1, 1.05} }";
+            }
+          ];
+        }
+      ];
 
       animation = [
-        { leaf = "windows"; enabled = true; speed = 7; bezier = "myBezier"; }
-        { leaf = "windowsOut"; enabled = true; speed = 7; bezier = "default"; style = "popin 80%"; }
-        { leaf = "border"; enabled = true; speed = 10; bezier = "default"; }
-        { leaf = "borderangle"; enabled = true; speed = 8; bezier = "default"; }
-        { leaf = "fade"; enabled = true; speed = 7; bezier = "default"; }
-        { leaf = "workspaces"; enabled = true; speed = 6; bezier = "default"; }
+        {
+          leaf = "windows";
+          enabled = true;
+          speed = 7;
+          bezier = "myBezier";
+        }
+        {
+          leaf = "windowsOut";
+          enabled = true;
+          speed = 7;
+          bezier = "default";
+          style = "popin 80%";
+        }
+        {
+          leaf = "border";
+          enabled = true;
+          speed = 10;
+          bezier = "default";
+        }
+        {
+          leaf = "borderangle";
+          enabled = true;
+          speed = 8;
+          bezier = "default";
+        }
+        {
+          leaf = "fade";
+          enabled = true;
+          speed = 7;
+          bezier = "default";
+        }
+        {
+          leaf = "workspaces";
+          enabled = true;
+          speed = 6;
+          bezier = "default";
+        }
       ];
 
       window_rule = [
@@ -192,7 +244,10 @@ in
             class = "^io.github.kaii_lb.Overskride$";
           };
           # size = [ "50%" "50%" ];
-          size = [ 1000 800 ];
+          size = [
+            1000
+            800
+          ];
           float = true;
         }
       ];
@@ -266,17 +321,37 @@ in
         (bind "SUPER + mouse_up" (dsp.focusWorkspace "e-1"))
 
         # Volume keys
-        (bindOpts "XF86AudioRaiseVolume" (dsp.exec "wpctl set-volume --limit 1.0 @DEFAULT_AUDIO_SINK@ 5%+") { locked = true; repeating = true; })
-        (bindOpts "XF86AudioLowerVolume" (dsp.exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-") { locked = true; repeating = true; })
-        (bindOpts "XF86AudioMute" (dsp.exec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") { locked = true; })
-        (bindOpts "XF86AudioMicMute" (dsp.exec "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle") { locked = true; })
+        (bindOpts "XF86AudioRaiseVolume" (dsp.exec "wpctl set-volume --limit 1.0 @DEFAULT_AUDIO_SINK@ 5%+")
+          {
+            locked = true;
+            repeating = true;
+          }
+        )
+        (bindOpts "XF86AudioLowerVolume" (dsp.exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-") {
+          locked = true;
+          repeating = true;
+        })
+        (bindOpts "XF86AudioMute" (dsp.exec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") {
+          locked = true;
+        })
+        (bindOpts "XF86AudioMicMute" (dsp.exec "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle") {
+          locked = true;
+        })
 
         # Brightness keys
-        (bindOpts "XF86MonBrightnessUp" (dsp.exec "brightnessctl -d intel_backlight set 5%+") { locked = true; repeating = true; })
-        (bindOpts "XF86MonBrightnessDown" (dsp.exec "brightnessctl -d intel_backlight set 5%-") { locked = true; repeating = true; })
+        (bindOpts "XF86MonBrightnessUp" (dsp.exec "brightnessctl -d intel_backlight set 5%+") {
+          locked = true;
+          repeating = true;
+        })
+        (bindOpts "XF86MonBrightnessDown" (dsp.exec "brightnessctl -d intel_backlight set 5%-") {
+          locked = true;
+          repeating = true;
+        })
 
         # Lib close
-        (bindOpts "switch:on:Lid Switch" (dsp.exec "${pkgs.systemd}/bin/systemctl suspend") { locked = true; })
+        (bindOpts "switch:on:Lid Switch" (dsp.exec "${pkgs.systemd}/bin/systemctl suspend") {
+          locked = true;
+        })
 
         # Mouse move/resize
         (bindOpts "SUPER + mouse:272" dsp.drag { mouse = true; })
@@ -287,7 +362,8 @@ in
         (bind "SUPER + ALT + right" (dsp.moveToMonitor "r"))
         (bind "SUPER + ALT + up" (dsp.moveToMonitor "u"))
         (bind "SUPER + ALT + down" (dsp.moveToMonitor "d"))
-      ] ++ workspaceBinds;
+      ]
+      ++ workspaceBinds;
     };
   };
 }
