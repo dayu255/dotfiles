@@ -8,12 +8,19 @@
   networking.hostName = "lollipop"; # Define your hostname.
 
   imports = [
+    # Desktop
     ../modules/hyprland/hyprland.nix
     ../modules/plasma/plasma.nix
-    ../modules/input/input.nix
     ../modules/sddm/sddm.nix
+    # Input
+    ../modules/input/input.nix
+    # Nvidia
     ../modules/nvidia/nvidia.nix
+    # Font
     ../modules/font/font.nix
+    # Tailscale
+    ../modules/tailscale/tailscale.nix
+    # Dynamic Link
     ../modules/nix-ld/nix-ld.nix
   ];
 

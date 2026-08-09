@@ -92,8 +92,7 @@ in
     qbittorrent
 
     # Network
-    dig
-    whois
+    inetutils
     oha
 
     # Auth / Security

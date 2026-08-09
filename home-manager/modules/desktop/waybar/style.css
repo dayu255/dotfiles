@@ -137,7 +137,7 @@ button {
 }
 
 #custom-docker.docker {
-    color: #85c1dc;
+    color: #8caaee;
 }
 
 #custom-docker.docker-none {
@@ -174,4 +174,16 @@ button {
 
 #custom-weather.error {
     color: #e78284; /* Red */
+}
+
+#custom-tailscale.connected {
+    color: #8caaee;
+}
+
+#custom-tailscale.disconnected {
+    color: #737994;
+}
+
+#custom-tailscale.error {
+    color: #f38ba8; /* Red */
 }

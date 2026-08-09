@@ -4,7 +4,7 @@ NO_IPV4="None"
 NO_IPV6="None"
 
 # パブリックIPv4の取得 (外部APIを利用、タイムアウト2秒)
-PUBLIC_IPV4=$(curl -s4 --max-time 2 https://checkip.amazonaws.com | tr -d '\r\n')
+PUBLIC_IPV4=$(curl -s4 --max-time 2 https://icanhazip.com | tr -d '\r\n')
 
 # プライベートIPv4の取得 (デフォルトルートから自動判定)
 PRIVATE_IPV4=$(ip route get 1.1.1.1 2>/dev/null | awk '{for(i=1;i<=NF;i++) if($i=="src") print $(i+1)}')
