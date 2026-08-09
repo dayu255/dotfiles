@@ -3,6 +3,8 @@
 TEMP_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/qrun/"
 CACHE_AMOUNT=30
 
+
+HELP_MESSAGE="Format: qrun [-t|--time] [-n|--no-cache] \033[4mfile\033[24m"
 SHOW_TIME=0
 NO_CACHE=0
 while [[ $# -gt 0 ]]; do
@@ -13,7 +15,7 @@ while [[ $# -gt 0 ]]; do
     shift
     ;;
   -h | --help)
-    echo -e "Format: qrun [-t|--time] [-n|--no-cache] \033[4mfile\033[24m"
+    echo -e "$HELP_MESSAGE"
     exit 0
     ;;
   -t | --time)
@@ -36,7 +38,7 @@ done
 
 if [ "$#" -lt 1 ]; then
   echo "Argument not found."
-  echo -e "Format: qrun [-t|--time] \033[4mfile\033[24m"
+  echo -e "$HELP_MESSAGE"
   exit 1
 fi
 

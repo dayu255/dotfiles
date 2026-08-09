@@ -1,7 +1,6 @@
 { pkgs, lib, ... }:
 
 {
-  # Zsh
   programs.zsh = {
     enable = true;
     enableCompletion = true;

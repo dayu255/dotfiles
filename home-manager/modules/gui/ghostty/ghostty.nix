@@ -7,6 +7,5 @@
     enable = true;
   };
 
-
   xdg.configFile."ghostty/config".source = ./config;
 }

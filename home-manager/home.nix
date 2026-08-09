@@ -6,14 +6,33 @@
   username,
   ...
 }:
+let
+  qrun = pkgs.callPackage ../pkgs/qrun/qrun.nix { };
+  nix-template = pkgs.callPackage ../pkgs/nix-template/nix-template.nix { };
+in
 {
   imports = [
-    ./modules/ssh/ssh.nix
-    ./modules/zed/zed.nix
-    ./modules/zsh/zsh.nix
-    ./modules/ghostty/ghostty.nix
-    ./modules/git/git.nix
-    ./modules/hyprland/hyprland.nix
+    # Desktop
+    ./modules/desktop/hyprland/hyprland.nix
+    ./modules/desktop/plasma/plasma.nix
+
+    # CLI
+    ./modules/cli/zsh/zsh.nix
+    ./modules/cli/starship/starship.nix
+    ./modules/cli/vim/vim.nix
+    ./modules/cli/nvim/nvim.nix
+    ./modules/cli/ssh/ssh.nix
+    ./modules/cli/git/git.nix
+    ./modules/cli/bat/bat.nix
+    ./modules/cli/yazi/yazi.nix
+    ./modules/cli/direnv/direnv.nix
+    ./modules/cli/fastfetch/fastfetch.nix
+
+    # GUI
+    ./modules/gui/zed/zed.nix
+    ./modules/gui/ghostty/ghostty.nix
+    ./modules/gui/wezterm/wezterm.nix
+    ./modules/gui/fcitx/fcitx.nix
   ];
 
   home.username = "${username}";
@@ -27,12 +46,7 @@
     # ZenBrowser!!!
     inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
 
-    # Terminal
-    wezterm
-
     # Editer
-    vim-full
-    neovim
     vscode
     wl-clipboard
 
@@ -56,7 +70,6 @@
     onefetch
 
     # Monitor
-    fastfetch
     speedtest-cli
     htop
     btop
@@ -65,14 +78,14 @@
     ncdu
     dust
 
-    # file
-    yazi
+    # File
     eza
     fzf
     ouch
     ripgrep
     duf
     zoxide
+    qbittorrent
 
     # Network
     dig
@@ -80,31 +93,34 @@
     oha
 
     # Auth / Security
+    openssl
     gnupg
     yubikey-manager
     cloudflared
-    openssl
 
-    # SNS
+    # Social
     discord
-    vesktop
+    vesktop # ごめんなさい。ほんとにhyprlandでdiscordがうまくいかなかったんです
     signal-desktop
     thunderbird
 
-    # etc
+    # Local LLM
     lmstudio
-    qbittorrent
+
+    # API Client
     bruno
+
+    # Contaienr
     podman
 
     # LaTeX
-    # texliveBasic
+    #texliveBasic
 
     # Unity
-    # unityhub
+    #unityhub
 
     # Blender
-    # blender
+    #blender
 
     # C/C++
     gcc
@@ -118,7 +134,7 @@
     asciiquarium-transparent
 
     # SQL
-    # sqruff
+    #sqruff
 
     # Ruby
     ruby
@@ -129,9 +145,9 @@
     goreleaser
 
     # BEAMs
-    # beam28Packages.erlang
-    # beam28Packages.elixir
-    # gleam
+    #beam28Packages.erlang
+    #beam28Packages.elixir
+    #gleam
 
     # Python
     uv
@@ -143,11 +159,11 @@
     yarn
 
     # Rust
-    # rustc
-    # cargo
-    # rustfmt
-    # clippy
-    # rust-analyzer
+    #rustc
+    #cargo
+    #rustfmt
+    #clippy
+    #rust-analyzer
 
     # Haskell
     ghc
@@ -158,102 +174,50 @@
     inputs.antigravity-nix.packages.x86_64-linux.google-antigravity-ide # IDE
     inputs.antigravity-nix.packages.x86_64-linux.google-antigravity-cli # CLI
 
-    # qrun
-    (writeShellApplication {
-      name = "qrun";
-      text = ''
-        export CPLUS_INCLUDE_PATH="${pkgs.ac-library}/include"
-        ${builtins.readFile ../pkgs/qrun/qrun.sh}
-      '';
-    })
-
-    # nix-template
-    (writeShellApplication {
-      name = "nix-template";
-      runtimeInputs = [ pkgs.coreutils ];
-      text = ''
-        FLAKE_NIX_TEMPLATE="${../pkgs/nix-template/flake.nix.template}"
-        ${builtins.readFile ../pkgs/nix-template/nix-template.sh}
-      '';
-    })
+    # Homemade pkgs
+    qrun
+    nix-template
   ];
 
-  # config files
+  # Change install path when npm install -g
+  home.sessionPath = [
+    "$HOME/.npm-global/bin"
+  ];
+  home.file.".npmrc".text = ''
+    prefix=${config.home.homeDirectory}/.npm-global
+  '';
+
+  # Config Files
   home.file = {
-    ".npmrc".text = ''
-      prefix=${config.home.homeDirectory}/.npm-global
-    '';
-    ".config/nvim".source =
-      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/home-manager/config/nvim";
-    ".vimrc".source = ./config/vim/vimrc;
+    # commitizen(nixpkgs#cz-git)
     ".czrc".text = ''
       {
       "path": "cz-conventional-changelog"
       }
     '';
   };
-  xdg.configFile = {
-    "wezterm/wezterm.lua".source = ./config/wezterm/wezterm.lua;
-    "fcitx5/profile".source = ./config/fcitx5/profile;
-    "yazi/yazi.toml".source = ./config/yazi/yazi.toml;
-    "fastfetch/config.jsonc".source = ./config/fastfetch/nixos-01.jsonc;
-  };
 
-  # 環境変数
+  # Env Var
   home.sessionVariables = {
-    PATH = "$HOME/.npm-global/bin:$PATH";
     EDITOR = "vim";
-    TERMINAL = "wezterm";
-    # C++のAtCoderライブラリを読み込ませる
+    TERMINAL = "ghostty";
+
+    # nixpkgs#ac-library
     CPATH = "${config.home.homeDirectory}/.nix-profile/include";
 
+    # Electron
     NIXOS_OZONE_WL = "1";
+
     # fcitx
     # GTK_IM_MODULE = "fcitx";
     # QT_IM_MODULE = "fcitx";
     XMODIFIERS = "@im=fcitx";
 
-    # ROS2
-    ROS_DOMAIN_ID = "42";
+    # no gui when enter passphrase
     SSH_ASKPASS_REQUIRE = "never";
   };
 
-  # bat
-  programs.bat = {
-    enable = true;
-    extraPackages = with pkgs.bat-extras; [
-      batgrep
-      batdiff
-      batman
-    ];
-    config = {
-      theme = "Catppuccin Frappe";
-    };
-  };
-
-  # SDDM(display manager) Wallpaper
-  programs.plasma = {
-    enable = true;
-    kscreenlocker.appearance = {
-      wallpaper = "${../assets/flower.png}";
-    };
-  };
-
-  # Starship
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-  xdg.configFile."starship.toml".source = ./config/starship/starship.toml;
-
-  # Direnv
-  programs.direnv = {
-    enable = true;
-    enableZshIntegration = true;
-    nix-direnv.enable = true;
-  };
-
-  # GPG-agent(パスワード打つところ)
+  # GPG-agent(passphrase)
   services.gpg-agent = {
     enable = true;
     pinentry.package = pkgs.pinentry-curses;
