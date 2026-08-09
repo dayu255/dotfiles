@@ -13,7 +13,7 @@ My NixOS & home-manager configurations
 | Browser      | Zen Browser          |
 | WM           | Hyprland             |
 | Status Bar   | Waybar               |
-| App Launcher | Waleker              |
+| App Launcher | Walker               |
 | Font         | HackGen35 Console NF |
 
 ## Credits & Assets

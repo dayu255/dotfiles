@@ -5,11 +5,16 @@
   ...
 }:
 {
+  networking.hostName = "lollipop"; # Define your hostname.
+
   imports = [
     ../modules/hyprland/hyprland.nix
+    ../modules/plasma/plasma.nix
+    ../modules/input/input.nix
     ../modules/sddm/sddm.nix
     ../modules/nvidia/nvidia.nix
     ../modules/font/font.nix
+    ../modules/nix-ld/nix-ld.nix
   ];
 
   # Use latest linux kernel.
@@ -29,7 +34,9 @@
     priority = 100;
   };
 
-  networking.hostName = "lollipop"; # Define your hostname.
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -68,23 +75,9 @@
     # };
   };
 
-  # inputMethod
-  i18n.inputMethod = {
-    enable = true;
-    type = "fcitx5";
-    # fcitx5.plasma6Support = true;
-    fcitx5.waylandFrontend = true;
-    fcitx5.addons = with pkgs; [
-      fcitx5-mozc
-      fcitx5-gtk
-    ];
-  };
-
   # X-window System
   services.xserver.enable = true;
   services.xserver.exportConfiguration = true;
-
-  services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -104,6 +97,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     wireplumber.enable = true;
+
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
@@ -120,11 +114,12 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # 蓋を閉じたらsuspend
+  # Suspend when close lid
   services.logind.settings.Login = {
     HandleLidSwitch = "suspend";
   };
 
+  # Nix
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -141,19 +136,14 @@
       "docker"
       "video"
     ];
-    packages = with pkgs; [
-      kdePackages.kate
-    ];
     shell = pkgs.zsh;
   };
+  programs.zsh.enable = true;
 
   nix.settings.trusted-users = [
     "root"
     "${username}"
   ];
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     google-chrome
@@ -178,20 +168,8 @@
   # Docker deamon enable
   virtualisation.docker.enable = true;
 
-  # nix-ld 動的リンクうまくしてくれるやつ
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [
-      stdenv.cc.cc.lib
-      zlib
-      openssl
-      ac-library
-    ];
-  };
   # envfs /bin/bashとかのパスをうまく変換するやつ
   services.envfs.enable = true;
-
-  programs.zsh.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
