@@ -62,9 +62,9 @@
 
   "network": {
     "interval": 2,
-    "format-wifi": "󰤢  󰕒 {bandwidthUpBits}  󰇚 {bandwidthDownBits}",
-    "format-ethernet": "󰈀  󰕒 {bandwidthUpBits}  󰇚 {bandwidthDownBits}",
-    "format-disconnected": "󰤠  No Network",
+    "format-wifi": "󰤢 󰕒 {bandwidthUpBits}  󰇚 {bandwidthDownBits}",
+    "format-ethernet": "󰈀 󰕒 {bandwidthUpBits}  󰇚 {bandwidthDownBits}",
+    "format-disconnected": "󰤠 No Network",
     "tooltip": false,
   },
 
