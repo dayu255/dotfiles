@@ -14,25 +14,26 @@ config.enable_wayland = true
 
 -- Appearance
 config.color_scheme = "Kanagawa (Gogh)"
+-- config.color_scheme = "Catppuccin Macchiato"
 -- config.color_scheme = 'Rosé Pine'
 config.font_size = 12
 config.window_padding = {
-	left = "1cell",
-	right = "1cell",
-	top = "0.5cell",
-	bottom = "0.5cell",
+	left = "0.9cell",
+	right = "0.9cell",
+	top = "0.35cell",
+	bottom = "0.35cell",
 }
 config.font = wezterm.font_with_fallback({
 	{ family = "HackGen35 Console NF", weight = "Regular" },
 	"Noto Sans Mono CJK JP",
 })
 config.use_ime = true
-config.window_background_opacity = 0.675
+config.window_background_opacity = 0.7
 config.wayland_window_background_blur = true
 -- config.win_background_blur = true
 config.window_decorations = "NONE"
 
-config.default_cursor_style = "BlinkingBlock"
+config.default_cursor_style = "SteadyBlock"
 
 config.use_fancy_tab_bar = true
 config.tab_max_width = 80

@@ -71,6 +71,7 @@
       };
 
       theme = "Kanagawa";
+      # theme = "Catppuccin Macchiato";
     };
 
     userTasks = [

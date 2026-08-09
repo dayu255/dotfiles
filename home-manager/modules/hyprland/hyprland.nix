@@ -138,8 +138,9 @@ in
         };
 
         misc = {
-          force_default_wallpaper = -1;
           disable_hyprland_logo = true;
+          disable_splash_rendering = true;
+          force_default_wallpaper = 0;
         };
 
         input = {
@@ -177,22 +178,21 @@ in
       ];
 
       window_rule = [
+        # pwvucontrol(オーディオのフロントエンド)
         {
           match = {
             class = "^com.saivert.pwvucontrol$";
           };
           float = true;
         }
-        {
-          match = {
-            class = "^blueman-manager$";
-          };
-          float = true;
-        }
+
+        # overskride(bluetoothのフロントエンド)
         {
           match = {
             class = "^io.github.kaii_lb.Overskride$";
           };
+          # size = [ "50%" "50%" ];
+          size = [ 1000 800 ];
           float = true;
         }
       ];

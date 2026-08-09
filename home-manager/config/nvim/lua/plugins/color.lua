@@ -1,25 +1,22 @@
 return {
   {
-    "rebelot/kanagawa.nvim",
+    "catppuccin/nvim",
+    name = "catppuccin",
     lazy = false,
     priority = 1000,
     opts = {
-      theme = "wave",
-      background = {
-        dark = "wave",
-        light = "lotus",
-      },
+      flavour = "macchiato", -- latte, frappe, macchiato, mocha
     },
     config = function(_, opts)
-      require("kanagawa").setup(opts)
-      vim.cmd("colorscheme kanagawa")
+      require("catppuccin").setup(opts)
+      vim.cmd.colorscheme("catppuccin")
     end,
   },
 
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "kanagawa",
+      colorscheme = "catppuccin",
     },
   },
 }

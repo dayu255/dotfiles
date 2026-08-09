@@ -2,12 +2,14 @@
   config,
   pkgs,
   username,
-  flowerwallpaper,
   ...
 }:
 {
   imports = [
-    ../modules/hyprland.nix
+    ../modules/hyprland/hyprland.nix
+    ../modules/sddm/sddm.nix
+    ../modules/nvidia/nvidia.nix
+    ../modules/font/font.nix
   ];
 
   # Use latest linux kernel.
@@ -82,37 +84,6 @@
   services.xserver.enable = true;
   services.xserver.exportConfiguration = true;
 
-  # Nvidia
-  hardware.graphics.enable = true;
-  services.xserver.videoDrivers = [
-    "nvidia"
-  ];
-  hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
-    nvidiaSettings = true;
-    open = true;
-
-    modesetting.enable = true;
-
-    powerManagement.enable = true;
-    powerManagement.finegrained = true;
-
-    prime = {
-      offload.enable = true;
-      offload.enableOffloadCmd = true;
-
-      intelBusId = "PCI:0@0:2:0";
-      nvidiaBusId = "PCI:2@0:0:0";
-    };
-  };
-
-  # SSDM(display manager)
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-    theme = "breeze";
-  };
-
   services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
@@ -141,13 +112,15 @@
     #media-session.enable = true;
   };
 
+  # Bluetooth
   hardware.bluetooth.enable = true;
-  # hardware.bluetooth.powerOnBoot = true;
+  hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # 蓋を閉じたらsuspend
   services.logind.settings.Login = {
     HandleLidSwitch = "suspend";
   };
@@ -195,7 +168,7 @@
 
     (writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
       [General]
-      background="${flowerwallpaper}"
+      background="${../../assets/flower.png}"
     '')
   ];
 

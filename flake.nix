@@ -55,12 +55,6 @@
         inherit system;
         config.allowUnfree = true;
       };
-
-      flowerwallpaper = pkgs.fetchurl {
-        url = "https://github.com/dayu255/assets/blob/main/flower.jpg?raw=true";
-        name = "flower.jpg";
-        hash = "sha256-2JcFtKoTr5f2XJLGzl0pcybD3LHM7QSQK+87W/ohgCc=";
-      };
     in
     {
       # Nixos
@@ -70,12 +64,10 @@
           specialArgs = {
             inherit inputs;
             inherit username;
-            inherit flowerwallpaper;
           };
           modules = [
             ./nixos/lollipop/configuration.nix
             ./nixos/lollipop/hardware-configuration.nix
-            ./nixos/modules/font.nix
           ];
         };
       };
@@ -87,7 +79,6 @@
         extraSpecialArgs = {
           inherit inputs;
           inherit username;
-          inherit flowerwallpaper;
         };
         modules = [
           { nixpkgs.config.allowUnfree = true; }

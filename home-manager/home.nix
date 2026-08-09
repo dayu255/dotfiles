@@ -4,7 +4,6 @@
   inputs,
   lib,
   username,
-  flowerwallpaper,
   ...
 }:
 {
@@ -12,6 +11,7 @@
     ./modules/ssh/ssh.nix
     ./modules/zed/zed.nix
     ./modules/zsh/zsh.nix
+    ./modules/ghostty/ghostty.nix
     ./modules/git/git.nix
     ./modules/hyprland/hyprland.nix
   ];
@@ -29,7 +29,6 @@
 
     # Terminal
     wezterm
-    ghostty
 
     # Editer
     vim-full
@@ -76,6 +75,7 @@
     zoxide
 
     # Network
+    dig
     whois
     oha
 
@@ -235,7 +235,7 @@
   programs.plasma = {
     enable = true;
     kscreenlocker.appearance = {
-      wallpaper = "${flowerwallpaper}";
+      wallpaper = "${../assets/flower.png}";
     };
   };
 
