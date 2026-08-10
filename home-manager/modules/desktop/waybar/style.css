@@ -70,6 +70,10 @@ button {
     margin: 5px 0;
 }
 
+#network {
+    color: #8caaee;
+}
+
 #clock {
     color: #8caaee;
     border-radius: 5px;
@@ -80,6 +84,10 @@ button {
     color: #8caaee;
     margin-left: 0.5rem;
     border-radius: 5px;
+}
+
+#temperature.critical {
+    color: #e78284;
 }
 
 #battery {
