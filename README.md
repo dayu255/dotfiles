@@ -1,4 +1,4 @@
-# Dotfiles
+# ❄Dotfiles
 
 My NixOS & home-manager configurations
 
@@ -16,9 +16,9 @@ My NixOS & home-manager configurations
 | App Launcher | Walker               |
 | Font         | HackGen35 Console NF |
 
-## Installation
+## 🚀Installation
 
-### Prerequisites
+### 🙇‍♀️Prerequisites
 
 - nix-command
 - flakes
@@ -131,7 +131,7 @@ My NixOS & home-manager configurations
    nh home switch .
    ```
 
-## Directory Structure
+## 📁Directory Structure
 
 ```text
 dotfiles
@@ -229,6 +229,6 @@ dotfiles
       └── qrun.sh
 ```
 
-## Credits & Assets
+## ©Credits & Assets
 
 - /assets/cherry_blossom_night.jpeg: [Cherry blossoms along the moat of Hirosaki Castle at night 20260420h.jpg](https://commons.wikimedia.org/wiki/File:Cherry_blossoms_along_the_moat_of_Hirosaki_Castle_at_night_20260420h.jpg) by 掬茶, licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
