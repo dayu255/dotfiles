@@ -125,15 +125,15 @@ in
           gaps_out = 4;
           border_size = 2;
           col = {
-            active_border = "rgb(aa7bff)";
-            inactive_border = "rgb(303030)";
+            active_border = "rgb(957fb8)";
+            inactive_border = "rgb(2a2a37)";
           };
         };
 
         decoration = {
           rounding = 5;
           active_opacity = 1.00;
-          inactive_opacity = 0.9;
+          inactive_opacity = 0.90;
           blur = {
             enabled = true;
             size = 3;

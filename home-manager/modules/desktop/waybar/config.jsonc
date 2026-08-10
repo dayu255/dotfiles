@@ -10,8 +10,8 @@
     "backlight",
     "battery",
     "custom/docker",
-    "cpu",
     "temperature",
+    "cpu",
     "memory",
     "bluetooth",
     "tray",
@@ -83,8 +83,8 @@
     "interval": 2,
     "thermal-zone": 10,
     "critical-threshold": 80,
-    "format": "  {temperatureC}°C",
-    "format-critical": "  {temperatureC}°C",
+    "format": " {temperatureC}°C",
+    "format-critical": " {temperatureC}°C",
   },
 
   "custom/uptime": {

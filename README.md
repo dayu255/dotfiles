@@ -2,7 +2,7 @@
 
 My NixOS & home-manager configurations
 
-![My Desktop ScreenShot](./assets/screenshot_20260810_002241.png "My Desktop ScreenShot")
+![My Desktop ScreenShot](./assets/screenshot_20260811_045910.png "My Desktop ScreenShot")
 
 | Category     | Name                 |
 | ------------ | -------------------- |
@@ -63,7 +63,7 @@ My NixOS & home-manager configurations
    ```nix
    # Nixos
    nixosConfigurations = {
-     lollipop = nixpkgs-stable.lib.nixosSystem {
+     shiratama = nixpkgs-stable.lib.nixosSystem {
        ...
      };
 
@@ -86,7 +86,7 @@ My NixOS & home-manager configurations
 
    # Home-Manager
    homeConfigurations = {
-     "${username}@lollipop" = home-manager.lib.homeManagerConfiguration {
+     "${username}@shiratama" = home-manager.lib.homeManagerConfiguration {
        ...
      };
 
@@ -143,7 +143,7 @@ dotfiles
 ├── flake.nix # Entry point
 ├── flake.lock
 ├── hosts # Configurations for each host
-│   ├── lollipop
+│   ├── shiratama
 │   │   ├── configuration.nix
 │   │   ├── hardware-configuration.nix
 │   │   └── home.nix

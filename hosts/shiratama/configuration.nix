@@ -5,7 +5,7 @@
   ...
 }:
 {
-  networking.hostName = "lollipop"; # Define your hostname.
+  networking.hostName = "shiratama"; # Define your hostname.
 
   imports = [
     # Desktop

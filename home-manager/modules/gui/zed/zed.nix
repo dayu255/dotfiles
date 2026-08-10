@@ -135,4 +135,6 @@
 
     mutableUserSettings = true;
   };
+
+  xdg.configFile."zed/themes/".source = ./themes;
 }

@@ -1,7 +1,14 @@
 @define-color bg_primary rgba(0, 0, 0, 0.55);
 @define-color bg_hover   rgba(0, 0, 0, 0.5);
-@define-color fg_base    #c6d0f5;
-@define-color fg_active  #99d1db;
+@define-color fg_base    #dcd7ba;
+@define-color fg_active  #7aa89f;
+@define-color red      #e46876;
+@define-color blue     #7e9cd8;
+@define-color yellow   #e6c384;
+@define-color green    #98bb6c;
+@define-color purple   #957fb8;
+@define-color mint     #7aa89f;
+
 
 * {
     font-family: JetbrainsMono Nerd Font;
@@ -14,7 +21,7 @@
 
 #waybar {
     background: transparent;
-    color: #c6d0f5;
+    color: #dcd7ba;
     margin: 2px 2px;
 }
 
@@ -30,13 +37,13 @@
 }
 
 #workspaces button {
-    color: #babbf1;
+    color: @purple;
     border-radius: 5px;
     padding: 0.4rem;
 }
 
 #workspaces button.active {
-    color: #99d1db;
+    color: @mint;
     border-radius: 5px;
 }
 
@@ -71,39 +78,39 @@ button {
 }
 
 #network {
-    color: #8caaee;
+    color: @blue;
 }
 
 #clock {
-    color: #8caaee;
+    color: @blue;
     border-radius: 5px;
     background: @bg_primary;
 }
 
 #custom-weather {
-    color: #8caaee;
+    color: @blue;
     margin-left: 0.5rem;
     border-radius: 5px;
 }
 
 #temperature.critical {
-    color: #e78284;
+    color: @red;
 }
 
 #battery {
-    color: #a6d189;
+    color: @green;
 }
 
 #battery.charging {
-    color: #a6d189;
+    color: @green;
 }
 
 #battery.warning:not(.charging) {
-    color: #e78284;
+    color: @red;
 }
 
 #backlight {
-    color: #e5c890;
+    color: @yellow;
 }
 
 #backlight,
@@ -112,86 +119,86 @@ button {
 }
 
 #pulseaudio {
-    color: #ea999c;
+    color: @red;
     border-radius: 5px 0px 0px 5px;
 }
 
 #custom-docker {
-    color: #85c1dc;
+    color: #7fb4ca;
 }
 
 #bluetooth {
-    color: #8caaee;
+    color: @blue;
 }
 
 #custom-ip {
-    color: #8caaee;
+    color: @blue;
     border-radius: 5px 5px 5px 5px;
 }
 
 #custom-music {
-    color: #ca9ee6;
+    color: @purple;
     border-radius: 5px;
 }
 
 #custom-lock {
-    color: #babbf1;
+    color: @purple;
 }
 
 #custom-power {
     margin-right: 1rem;
     border-radius: 0px 5px 5px 0px;
-    color: #e78284;
+    color: @red;
 }
 
 #custom-docker.docker {
-    color: #8caaee;
+    color: @blue;
 }
 
 #custom-docker.docker-none {
-    color: #737994;
+    color: #727169;
 }
 
 #custom-docker.docker-error {
-    color: #e78284;
+    color: @red;
 }
 
 #custom-weather.clear {
-    color: #e5c890; /* Sunny yellow */
+    color: @yellow; /* Sunny yellow */
 }
 
 #custom-weather.cloud {
-    color: #99d1db; /* Light blue */
+    color: @mint; /* Light blue */
 }
 
 #custom-weather.rain {
-    color: #8caaee; /* Blue */
+    color: @blue; /* Blue */
 }
 
 #custom-weather.snow {
-    color: #c6d0f5; /* White-ish */
+    color: #dcd7ba; /* White-ish */
 }
 
 #custom-weather.thunder {
-    color: #ca9ee6; /* Purple */
+    color: @purple; /* Purple */
 }
 
 #custom-weather.fog {
-    color: #b0b4bc; /* Gray */
+    color: #727169; /* Gray */
 }
 
 #custom-weather.error {
-    color: #e78284; /* Red */
+    color: @red; /* Red */
 }
 
 #custom-tailscale.connected {
-    color: #8caaee;
+    color: @blue;
 }
 
 #custom-tailscale.disconnected {
-    color: #737994;
+    color: #727169;
 }
 
 #custom-tailscale.error {
-    color: #f38ba8; /* Red */
+    color: @red; /* Red */
 }

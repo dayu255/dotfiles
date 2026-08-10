@@ -76,7 +76,7 @@
       # Nixos
       nixosConfigurations = {
         # nixpkgs-stableを渡す
-        lollipop = nixpkgs-stable.lib.nixosSystem {
+        shiratama = nixpkgs-stable.lib.nixosSystem {
           inherit system;
           specialArgs = {
             inherit inputs;
@@ -84,15 +84,15 @@
           };
           modules = [
             ./nixos/default.nix
-            ./hosts/lollipop/configuration.nix
-            ./hosts/lollipop/hardware-configuration.nix
+            ./hosts/shiratama/configuration.nix
+            ./hosts/shiratama/hardware-configuration.nix
           ];
         };
       };
 
       # Home-Manager
       homeConfigurations = {
-        "${username}@lollipop" = home-manager.lib.homeManagerConfiguration {
+        "${username}@shiratama" = home-manager.lib.homeManagerConfiguration {
           # nixpkgs-unstableを渡す
           pkgs = pkgs-unstable;
           extraSpecialArgs = {
@@ -101,7 +101,7 @@
           };
           modules = [
             ./home-manager/default.nix
-            ./hosts/lollipop/home.nix
+            ./hosts/shiratama/home.nix
             plasma-manager.homeModules.plasma-manager
             inputs.walker.homeManagerModules.default
           ];

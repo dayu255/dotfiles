@@ -3,10 +3,10 @@ font-family = "HackGen35 Console NF"
 font-size = 12
 
 # Appearance
-# theme = "Kanagawa Wave"
-theme = "Sakura"
+theme = "Kanagawa Wave"
+# theme = "Sakura"
 # theme = "Catppuccin Frappe"
-background-opacity = 0.85
+background-opacity = 0.70
 background-blur-radius = 20
 window-decoration = false
 window-padding-x = 6
