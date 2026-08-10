@@ -69,10 +69,10 @@ in
     btop
     bottom
     procs
-    ncdu
     dust
 
     # File
+    ncdu_1
     eza
     fzf
     ouch
