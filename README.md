@@ -27,8 +27,8 @@ My NixOS & home-manager configurations
 1. Clone this repository
 
    ```bash
-   git clone git clone https://github.com/dayu255/dotfiles.git ~/.dotfiles
-   cd ~/.dotfiles
+   git clone git clone https://github.com/dayu255/dotfiles.git ~/dotfiles
+   cd ~/dotfiles
    ```
 
 1. Make `hardware-configuration.nix` for your host
