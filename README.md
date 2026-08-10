@@ -8,7 +8,7 @@ My NixOS & home-manager configurations
 | ------------ | -------------------- |
 | OS           | NixOS                |
 | Shell        | zsh + Starship       |
-| Terminal     | Ghostty              |
+| Terminal     | Ghostty, Wezterm     |
 | Editor       | Zed + Vim            |
 | Browser      | Zen Browser          |
 | WM           | Hyprland             |
