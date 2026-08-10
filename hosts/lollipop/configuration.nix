@@ -9,19 +9,13 @@
 
   imports = [
     # Desktop
-    ../modules/hyprland/hyprland.nix
-    ../modules/plasma/plasma.nix
-    ../modules/sddm/sddm.nix
-    # Input
-    ../modules/input/input.nix
+    ../../nixos/modules/hyprland/hyprland.nix
+    ../../nixos/modules/plasma/plasma.nix
+    ../../nixos/modules/sddm/sddm.nix
     # Nvidia
-    ../modules/nvidia/nvidia.nix
-    # Font
-    ../modules/font/font.nix
+    ../../nixos/modules/nvidia/nvidia.nix
     # Tailscale
-    ../modules/tailscale/tailscale.nix
-    # Dynamic Link
-    ../modules/nix-ld/nix-ld.nix
+    ../../nixos/modules/tailscale/tailscale.nix
   ];
 
   # Use latest linux kernel.
@@ -41,46 +35,11 @@
     priority = 100;
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # TimeZone
-  time.timeZone = "Asia/Tokyo";
-  time.hardwareClockInLocalTime = false;
-
-  # Language
-  i18n = {
-    defaultLocale = "ja_JP.UTF-8";
-    supportedLocales = [
-      "ja_JP.UTF-8/UTF-8"
-      "en_US.UTF-8/UTF-8"
-    ];
-    # extraLocaleSettings = {
-    #   LANGUAGE = "en_US.UTF-8";
-    #   LC_ALL = "en_US.UTF-8";
-    #   LC_CTYPE = "en_US.UTF-8";
-    #   LC_ADDRESS = "en_US.UTF-8";
-    #   LC_IDENTIFICATION = "en_US.UTF-8";
-    #   LC_MEASUREMENT = "en_US.UTF-8";
-    #   LC_MESSAGES = "en_US.UTF-8";
-    #   LC_MONETARY = "en_US.UTF-8";
-    #   LC_NAME = "en_US.UTF-8";
-    #   LC_NUMERIC = "en_US.UTF-8";
-    #   LC_PAPER = "en_US.UTF-8";
-    #   LC_TELEPHONE = "en_US.UTF-8";
-    #   LC_TIME = "en_US.UTF-8";
-    #   LC_COLLATE = "en_US.UTF-8";
-    # };
-  };
+  # Enables wireless support via wpa_supplicant.
+  #networking.wireless.enable = true;
 
   # X-window System
   services.xserver.enable = true;
@@ -126,17 +85,8 @@
     HandleLidSwitch = "suspend";
   };
 
-  # Nix
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-  nix.settings.auto-optimise-store = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
-    isNormalUser = true;
-    description = "${username}";
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -151,32 +101,20 @@
     "root"
     "${username}"
   ];
-
   environment.systemPackages = with pkgs; [
-    google-chrome
-    vim
-    wget
-    file
     ccid
     opensc
     docker
-    coreutils
-    net-tools
 
+    # SDDMの壁紙の設定
     (writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
       [General]
       background="${../../assets/flower.png}"
     '')
   ];
 
-  # ssh-agent
-  programs.ssh.startAgent = true;
-
   # Docker deamon enable
   virtualisation.docker.enable = true;
-
-  # envfs /bin/bashとかのパスをうまく変換するやつ
-  services.envfs.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -83,25 +83,29 @@
             inherit username;
           };
           modules = [
-            ./nixos/lollipop/configuration.nix
-            ./nixos/lollipop/hardware-configuration.nix
+            ./nixos/default.nix
+            ./hosts/lollipop/configuration.nix
+            ./hosts/lollipop/hardware-configuration.nix
           ];
         };
       };
 
       # Home-Manager
-      homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
-        # nixpkgs-unstableを渡す
-        pkgs = pkgs-unstable;
-        extraSpecialArgs = {
-          inherit inputs;
-          inherit username;
+      homeConfigurations = {
+        "${username}@lollipop" = home-manager.lib.homeManagerConfiguration {
+          # nixpkgs-unstableを渡す
+          pkgs = pkgs-unstable;
+          extraSpecialArgs = {
+            inherit inputs;
+            inherit username;
+          };
+          modules = [
+            ./home-manager/default.nix
+            ./hosts/lollipop/home.nix
+            plasma-manager.homeModules.plasma-manager
+            inputs.walker.homeManagerModules.default
+          ];
         };
-        modules = [
-          ./home-manager/home.nix
-          plasma-manager.homeModules.plasma-manager
-          inputs.walker.homeManagerModules.default
-        ];
       };
     };
 }

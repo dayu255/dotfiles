@@ -16,10 +16,6 @@ let
 in
 {
   imports = [
-    # Desktop
-    ./modules/desktop/hyprland/hyprland.nix
-    ./modules/desktop/plasma/plasma.nix
-
     # CLI
     ./modules/cli/zsh/zsh.nix
     ./modules/cli/starship/starship.nix
@@ -42,22 +38,17 @@ in
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
 
-  home.stateVersion = "25.11"; # Please read the comment before changing.
-
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    # Browser
+    google-chrome
     # ZenBrowser!!!
     inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
 
     # Editer
     vscode
     wl-clipboard
-
-    # Creative
-    gimp
-    kdePackages.kdenlive
-    audacity
 
     # NixTools
     nh
@@ -74,7 +65,6 @@ in
     onefetch
 
     # Monitor
-    speedtest-cli
     htop
     btop
     bottom
@@ -89,7 +79,6 @@ in
     ripgrep
     duf
     zoxide
-    qbittorrent
 
     # Network
     inetutils
@@ -103,27 +92,13 @@ in
 
     # Social
     discord
-    vesktop # ごめんなさい。ほんとにhyprlandでdiscordがうまくいかなかったんです
     signal-desktop
-    thunderbird
-
-    # Local LLM
-    lmstudio
 
     # API Client
     bruno
 
     # Contaienr
     podman
-
-    # LaTeX
-    #texliveBasic
-
-    # Unity
-    #unityhub
-
-    # Blender
-    #blender
 
     # C/C++
     gcc
@@ -207,14 +182,6 @@ in
 
     # nixpkgs#ac-library
     CPATH = "${config.home.homeDirectory}/.nix-profile/include";
-
-    # Electron
-    NIXOS_OZONE_WL = "1";
-
-    # fcitx
-    # GTK_IM_MODULE = "fcitx";
-    # QT_IM_MODULE = "fcitx";
-    XMODIFIERS = "@im=fcitx";
 
     # no gui when enter passphrase
     SSH_ASKPASS_REQUIRE = "never";
