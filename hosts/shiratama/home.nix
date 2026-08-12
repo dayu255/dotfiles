@@ -10,6 +10,10 @@
   plasma-manager,
   ...
 }:
+let
+  qrun = pkgs.callPackage ../../pkgs/qrun/qrun.nix { };
+  nix-template = pkgs.callPackage ../../pkgs/nix-template/nix-template.nix { };
+in
 {
   imports = [
     # Desktop
@@ -38,6 +42,7 @@
 
     # Editer
     vscode
+    wl-clipboard
 
     # Creative
     gimp
@@ -53,6 +58,13 @@
     discord
     signal-desktop
 
+    # Auth/Security
+    yubikey-manager
+    cloudflared
+
+    # BenchMark
+    oha
+
     # API Client
     bruno
 
@@ -62,18 +74,45 @@
     # Local LLM
     lmstudio
 
-    # LaTeX
-    #texliveBasic
-
     # Unity
     #unityhub
 
     # Blender
     #blender
+
+    # LaTeX
+    #texliveBasic
+
+    # C/C++
+    gcc
+    gdb
+    gnumake
+    clang-tools
+    ac-library
+
+    # Golang
+    go
+
+    # JS/TS
+    nodejs
+    typescript
+    bun
+
+    # Antigravity
+    inputs.antigravity.packages.x86_64-linux.default # Base App
+    inputs.antigravity.packages.x86_64-linux.google-antigravity-ide # IDE
+    inputs.antigravity.packages.x86_64-linux.google-antigravity-cli # CLI
+
+    # Homemade pkgs
+    qrun
+    nix-template
   ];
 
   # Env Var
   home.sessionVariables = {
+    # for `nh` command
+    FLAKE = "${config.home.homeDirectory}/dotfiles";
+
     TERMINAL = "ghostty";
     # Electron
     NIXOS_OZONE_WL = "1";
@@ -82,5 +121,18 @@
     # GTK_IM_MODULE = "fcitx";
     # QT_IM_MODULE = "fcitx";
     XMODIFIERS = "@im=fcitx";
+
+    # nixpkgs#ac-library
+    CPATH = "${config.home.homeDirectory}/.nix-profile/include";
+
+    # no gui when enter passphrase
+    SSH_ASKPASS_REQUIRE = "never";
+  };
+
+  # GPG-agent(passphrase)
+  services.gpg-agent = {
+    enable = true;
+    pinentry.package = pkgs.pinentry-curses;
+    enableZshIntegration = true;
   };
 }

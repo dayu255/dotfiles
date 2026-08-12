@@ -10,10 +10,6 @@
   plasma-manager,
   ...
 }:
-let
-  qrun = pkgs.callPackage ../pkgs/qrun/qrun.nix { };
-  nix-template = pkgs.callPackage ../pkgs/nix-template/nix-template.nix { };
-in
 {
   imports = [
     # CLI
@@ -35,8 +31,6 @@ in
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    wl-clipboard
-
     # NixTools
     nh
     nvd
@@ -48,90 +42,23 @@ in
     gh-dash
     cz-cli
     lazygit
-    delta
-    onefetch
 
     # Monitor
-    htop
-    btop
     bottom
     procs
-    dust
 
     # File
+    dust
     ncdu_1
     eza
     fzf
-    ouch
     ripgrep
     duf
-    zoxide
-
-    # Network
-    inetutils
-    oha
+    ouch
 
     # Auth / Security
     openssl
     gnupg
-    yubikey-manager
-    cloudflared
-
-    # C/C++
-    gcc
-    gdb
-    gnumake
-    clang-tools
-    ac-library
-
-    # Kawaii
-    cbonsai
-    asciiquarium-transparent
-
-    # SQL
-    #sqruff
-
-    # Ruby
-    ruby
-
-    # go
-    go
-    cobra-cli
-    goreleaser
-
-    # BEAMs
-    #beam28Packages.erlang
-    #beam28Packages.elixir
-    #gleam
-
-    # Python
-    uv
-
-    # JS/TS
-    nodejs_26
-    typescript
-    bun
-    yarn
-
-    # Rust
-    #rustc
-    #cargo
-    #rustfmt
-    #clippy
-    #rust-analyzer
-
-    # Haskell
-    ghc
-    cabal-install
-
-    # Antigravity
-    inputs.antigravity.packages.x86_64-linux.default # Base App
-    inputs.antigravity.packages.x86_64-linux.google-antigravity-ide # IDE
-    inputs.antigravity.packages.x86_64-linux.google-antigravity-cli # CLI
-
-    # Homemade pkgs
-    qrun
-    nix-template
   ];
 
   # Change install path when npm install -g
@@ -155,18 +82,5 @@ in
   # Env Var
   home.sessionVariables = {
     EDITOR = "vim";
-
-    # nixpkgs#ac-library
-    CPATH = "${config.home.homeDirectory}/.nix-profile/include";
-
-    # no gui when enter passphrase
-    SSH_ASKPASS_REQUIRE = "never";
-  };
-
-  # GPG-agent(passphrase)
-  services.gpg-agent = {
-    enable = true;
-    pinentry.package = pkgs.pinentry-curses;
-    enableZshIntegration = true;
   };
 }

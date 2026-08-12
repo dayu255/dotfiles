@@ -95,10 +95,6 @@
   };
   programs.zsh.enable = true;
 
-  nix.settings.trusted-users = [
-    "root"
-    "${username}"
-  ];
   environment.systemPackages = with pkgs; [
     ccid
     opensc

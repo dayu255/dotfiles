@@ -23,6 +23,10 @@
       "wheel"
     ];
   };
+  nix.settings.trusted-users = [
+    "root"
+    "${username}"
+  ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -70,6 +74,7 @@
   nix.settings.auto-optimise-store = true;
 
   environment.systemPackages = with pkgs; [
+    # Basic
     vim
     curl
     wget
