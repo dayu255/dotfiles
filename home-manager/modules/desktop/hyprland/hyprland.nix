@@ -230,6 +230,20 @@ in
       ];
 
       window_rule = [
+        # Network Manager Applet
+        {
+          match = {
+            class = "^nm-applet$";
+          };
+          float = true;
+        }
+        {
+          match = {
+            class = "^nm-connection-editor$";
+          };
+          float = true;
+        }
+
         # pwvucontrol(オーディオのフロントエンド)
         {
           match = {
@@ -243,12 +257,34 @@ in
           match = {
             class = "^io.github.kaii_lb.Overskride$";
           };
+          float = true;
           # size = [ "50%" "50%" ];
           size = [
             1000
             800
           ];
+        }
+
+        # Picture in Picture
+        {
+          match = {
+            # class = "^zen$";
+            title = "^ピクチャーインピクチャー$";
+          };
           float = true;
+          pin = true;
+          size = [
+            480
+            270
+          ];
+          opacity = "1.0 0.5";
+          no_blur = true;
+          decorate = false;
+          center = false;
+          move = [
+            "(monitor_w-window_w-30)"
+            "65"
+          ];
         }
       ];
 

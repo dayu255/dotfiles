@@ -16,6 +16,7 @@
         terminus_font
         cantarell-fonts
         nerd-fonts.fira-code
+        jetbrains-mono
         hackgen-nf-font
       ]
     );
@@ -30,7 +31,13 @@
           "Noto Sans CJK JP"
           "Noto Color Emoji"
         ];
-        emoji = [ "Noto Color Emoji" ];
+        monospace = [
+          "HackGen35 Console NF"
+          "Noto Color Emoji"
+        ];
+        emoji = [
+          "Noto Color Emoji"
+        ];
       };
     };
   };

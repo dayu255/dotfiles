@@ -14,8 +14,6 @@
     ../../nixos/modules/sddm/sddm.nix
     # Nvidia
     ../../nixos/modules/nvidia/nvidia.nix
-    # Tailscale
-    ../../nixos/modules/tailscale/tailscale.nix
   ];
 
   # Use latest linux kernel.

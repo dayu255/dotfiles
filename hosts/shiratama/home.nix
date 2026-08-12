@@ -25,6 +25,14 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    # Browser
+    google-chrome
+    # ZenBrowser!!!
+    inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
+
+    # Editer
+    vscode
+
     # Creative
     gimp
     kdePackages.kdenlive
@@ -36,6 +44,14 @@
     # Social
     vesktop # ごめんなさい。本当にhyprlandでdiscordがうまくいきませんでした。
     thunderbird
+    discord
+    signal-desktop
+
+    # API Client
+    bruno
+
+    # Contaienr
+    podman
 
     # Local LLM
     lmstudio

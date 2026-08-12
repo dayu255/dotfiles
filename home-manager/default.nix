@@ -41,13 +41,6 @@ in
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    # Browser
-    google-chrome
-    # ZenBrowser!!!
-    inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
-
-    # Editer
-    vscode
     wl-clipboard
 
     # NixTools
@@ -89,16 +82,6 @@ in
     gnupg
     yubikey-manager
     cloudflared
-
-    # Social
-    discord
-    signal-desktop
-
-    # API Client
-    bruno
-
-    # Contaienr
-    podman
 
     # C/C++
     gcc
