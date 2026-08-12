@@ -28,7 +28,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  #networking.networkmanager.enable = true;
 
   # Enables wireless support via wpa_supplicant.
   #networking.wireless.enable = true;

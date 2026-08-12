@@ -27,12 +27,6 @@ in
     ./modules/cli/yazi/yazi.nix
     ./modules/cli/direnv/direnv.nix
     ./modules/cli/fastfetch/fastfetch.nix
-
-    # GUI
-    ./modules/gui/zed/zed.nix
-    ./modules/gui/ghostty/ghostty.nix
-    ./modules/gui/wezterm/wezterm.nix
-    ./modules/gui/fcitx/fcitx.nix
   ];
 
   home.username = "${username}";
@@ -161,7 +155,6 @@ in
   # Env Var
   home.sessionVariables = {
     EDITOR = "vim";
-    TERMINAL = "ghostty";
 
     # nixpkgs#ac-library
     CPATH = "${config.home.homeDirectory}/.nix-profile/include";

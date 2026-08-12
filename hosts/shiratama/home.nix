@@ -15,6 +15,12 @@
     # Desktop
     ../../home-manager/modules/desktop/hyprland/hyprland.nix
     ../../home-manager/modules/desktop/plasma/plasma.nix
+
+    # GUI
+    ../../home-manager/modules/gui/zed/zed.nix
+    ../../home-manager/modules/gui/ghostty/ghostty.nix
+    ../../home-manager/modules/gui/wezterm/wezterm.nix
+    ../../home-manager/modules/gui/fcitx/fcitx.nix
   ];
 
   home.username = "${username}";
@@ -68,6 +74,7 @@
 
   # Env Var
   home.sessionVariables = {
+    TERMINAL = "ghostty";
     # Electron
     NIXOS_OZONE_WL = "1";
 

@@ -268,7 +268,7 @@ in
         # Picture in Picture
         {
           match = {
-            # class = "^zen$";
+            #class = "^zen$";
             title = "^ピクチャーインピクチャー$";
           };
           float = true;
