@@ -76,6 +76,7 @@ in
     networkmanagerapplet
     pwvucontrol
     overskride
+    wl-mirror
   ];
 
   # 通知

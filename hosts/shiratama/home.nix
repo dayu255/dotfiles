@@ -111,7 +111,7 @@ in
   # Env Var
   home.sessionVariables = {
     # for `nh` command
-    FLAKE = "${config.home.homeDirectory}/dotfiles";
+    NH_FLAKE = "${config.home.homeDirectory}/dotfiles";
 
     TERMINAL = "ghostty";
     # Electron
