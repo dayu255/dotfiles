@@ -6,6 +6,10 @@
     enableDefaultConfig = false;
 
     settings = {
+      "ssh.dayu.jp" = {
+        ProxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h";
+      };
+
       "mini" = {
         HostName = "v6.dayu.jp";
       };
@@ -14,33 +18,30 @@
         HostName = "192.168.160.2";
       };
 
-      "mini.cloudflare" = {
+      "mini.cloudflared" = {
         HostName = "ssh.dayu.jp";
-        ProxyCommand = "cloudflared access ssh --hostname %h";
+        ProxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h";
       };
 
-      "ssh.dayu.jp" = {
-        ProxyCommand = "cloudflared access ssh --hostname %h";
-      };
-
-      "mirai" = {
-        HostName = "mirai.dayu.jp";
-        User = "dayu";
-        Port = 22;
-        StrictHostKeyChecking = "yes";
-        UserKnownHostsFile = "${./keys/mirai.pub}";
-      };
-
-      "mini*" = lib.hm.dag.entryAfter [ "mini" "mini.local" "mini.cloudflare" ] {
+      "mini*" = lib.hm.dag.entryAfter [ "mini" "mini.local" "mini.cloudflared" ] {
         User = "odayu";
         Port = 22;
         StrictHostKeyChecking = "yes";
         UserKnownHostsFile = "${./keys/mini.pub}";
       };
 
+      "mirai" = {
+        User = "dayu";
+        HostName = "mirai.dayu.jp";
+        Port = 22;
+        StrictHostKeyChecking = "yes";
+        UserKnownHostsFile = "${./keys/mirai.pub}";
+      };
+
       "*" = lib.hm.dag.entryAfter [ "mini*" "mirai" ] {
         IdentityFile = "~/.ssh/id_ed25519_sk_rk";
         IdentitiesOnly = "yes";
+
         ServerAliveInterval = 60;
         ServerAliveCountMax = 3;
         AddKeysToAgent = "yes";

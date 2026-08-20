@@ -52,6 +52,9 @@ in
     # File
     qbittorrent
 
+    # English Grammer
+    harper
+
     # Social
     vesktop # ごめんなさい。本当にhyprlandでdiscordがうまくいきませんでした。
     thunderbird
@@ -61,6 +64,8 @@ in
     # Auth/Security
     yubikey-manager
     cloudflared
+
+    onlyoffice-desktopeditors
 
     # BenchMark
     oha
@@ -92,6 +97,7 @@ in
 
     # Golang
     go
+    go-tools
 
     # JS/TS
     nodejs

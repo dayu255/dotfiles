@@ -131,6 +131,7 @@
       "toml"
       "astro"
       "lua"
+      "harper"
     ];
 
     mutableUserSettings = true;
