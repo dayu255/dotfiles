@@ -190,6 +190,8 @@ dotfiles
 │           ├── fcitx
 │           │   ├── fcitx.nix
 │           │   └── profile
+│           ├── kitty
+│           │   └── kitty.nix
 │           ├── ghostty
 │           │   ├── config
 │           │   └── ghostty.nix
