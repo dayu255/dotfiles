@@ -1,15 +1,10 @@
 {
-  config,
   pkgs,
   username,
   ...
 }:
 {
   imports = [
-    # Input
-    ./modules/input/input.nix
-    # Font
-    ./modules/font/font.nix
     # Dynamic Link
     ./modules/nix-ld/nix-ld.nix
     # Virtual FS

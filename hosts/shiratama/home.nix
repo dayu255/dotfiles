@@ -2,12 +2,7 @@
   config,
   pkgs,
   inputs,
-  lib,
   username,
-  zen-browser,
-  antigravity,
-  walker,
-  plasma-manager,
   ...
 }:
 let
@@ -24,6 +19,7 @@ in
     ../../home-manager/modules/gui/zed/zed.nix
     ../../home-manager/modules/gui/ghostty/ghostty.nix
     ../../home-manager/modules/gui/wezterm/wezterm.nix
+    ../../home-manager/modules/gui/kitty/kitty.nix
     ../../home-manager/modules/gui/fcitx/fcitx.nix
   ];
 
@@ -31,7 +27,6 @@ in
   home.homeDirectory = "/home/${username}";
 
   home.stateVersion = "25.11"; # Please read the comment before changing.
-
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
@@ -97,7 +92,7 @@ in
 
     # Golang
     go
-    go-tools
+    gopls
 
     # JS/TS
     nodejs

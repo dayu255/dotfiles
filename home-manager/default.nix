@@ -1,13 +1,7 @@
 {
   config,
   pkgs,
-  inputs,
-  lib,
   username,
-  zen-browser,
-  antigravity,
-  walker,
-  plasma-manager,
   ...
 }:
 {
@@ -36,6 +30,8 @@
     nvd
     nix-output-monitor
     nixfmt
+    nil
+    nixd
 
     # Git/GitHub
     github-cli

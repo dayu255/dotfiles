@@ -19,5 +19,5 @@
   # ファイアウォール（UDP 41641ポートの許可）
   networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
 
-  # services.resolved.enable = true;
+  #services.resolved.enable = true;
 }

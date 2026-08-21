@@ -1,11 +1,13 @@
 {
-  pkgs,
   ...
 }:
 {
   programs.yazi = {
     enable = true;
     shellWrapperName = "y";
+
+    settings = {
+      mgr.show_hidden = true;
+    };
   };
-  xdg.configFile."yazi/yazi.toml".source = ./yazi.toml;
 }

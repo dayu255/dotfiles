@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ ... }:
 {
   # zed-editor
   programs.zed-editor = {
@@ -71,7 +71,7 @@
       };
 
       theme = "Kanagawa";
-      # theme = "Catppuccin Macchiato";
+      #theme = "Catppuccin Macchiato";
     };
 
     userTasks = [

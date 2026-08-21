@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   username,
   ...
@@ -8,6 +7,10 @@
   networking.hostName = "shiratama"; # Define your hostname.
 
   imports = [
+    # Input
+    ./modules/input/input.nix
+    # Font
+    ./modules/font/font.nix
     # Desktop
     ../../nixos/modules/hyprland/hyprland.nix
     ../../nixos/modules/plasma/plasma.nix

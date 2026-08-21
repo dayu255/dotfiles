@@ -69,7 +69,6 @@ in
     hyprpolkitagent
     brightnessctl
     xdg-desktop-portal-gtk
-    hypridle
     imv
     wf-recorder
     hyprpicker
@@ -78,9 +77,6 @@ in
     overskride
     wl-mirror
   ];
-
-  # 通知
-  services.mako.enable = true;
 
   # ロックするやつ
   programs.hyprlock.enable = true;
@@ -91,6 +87,7 @@ in
     ../hyprpaper/hyprpaper.nix
     ../hypridle/hypridle.nix
     ../walker/walker.nix
+    ../mako/mako.nix
   ];
   # ==============================
 
@@ -302,8 +299,9 @@ in
       bind = [
         # App launchers
         (bind "SUPER + B" (dsp.exec "zen"))
-        (bind "SUPER + W" (dsp.exec "wezterm-gui"))
-        (bind "SUPER + G" (dsp.exec "ghostty"))
+        #(bind "SUPER + W" (dsp.exec "wezterm-gui"))
+        #(bind "SUPER + G" (dsp.exec "ghostty"))
+        (bind "SUPER + K" (dsp.exec "kitty"))
         (bind "SUPER + Z" (dsp.exec "zeditor"))
         (bind "SUPER + E" (dsp.exec "dolphin"))
         # (bind "SUPER + SPACE" (dsp.exec "rofi -show drun"))
