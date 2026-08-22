@@ -24,8 +24,16 @@
       cursor_blink_interval = 0;
       mouse_hide_wait = "-1.0";
 
+      # Tab
+      tab_bar_edge = "top";
+      tab_bar_style = "fade";
+      tab_bar_min_tabs = 2;
+
+      # Disable hyperlink
+      allow_hyperlinks = "no";
+
       # アクティブでなくて、時間がかかるコマンドが終了したら通知
-      notify_on_cmd_finish = "unfocused 5.0";
+      notify_on_cmd_finish = "unfocused 7.5";
     };
 
     keybindings = {
@@ -38,6 +46,10 @@
       "ctrl+shift+7" = "goto_tab 7";
       "ctrl+shift+8" = "goto_tab 8";
       "ctrl+shift+9" = "goto_tab 9";
+
+      "ctrl+shift+t" = "new_tab_with_cwd";
+      "ctrl+tab" = "next_tab";
+      "ctrl+shift+tab" = "previous_tab";
     };
   };
 }

@@ -8,19 +8,44 @@
 
   imports = [
     # Input
-    ./modules/input/input.nix
+    ../../nixos/modules/input/input.nix
     # Font
-    ./modules/font/font.nix
+    ../../nixos/modules/font/font.nix
+    # Bluetooth
+    ../../nixos/modules/bluetooth/bluetooth.nix
     # Desktop
     ../../nixos/modules/hyprland/hyprland.nix
     ../../nixos/modules/plasma/plasma.nix
     ../../nixos/modules/sddm/sddm.nix
     # Nvidia
     ../../nixos/modules/nvidia/nvidia.nix
+    # Docker
+    ../../nixos/modules/docker/docker.nix
   ];
 
   # Use latest linux kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Use stable linux kernel.
+  #boot.kernelPackages = pkgs.linuxPackages;
+
+  # Use linux 7.1
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_7_1;
+
+  # Pinning kernel
+  #boot.kernelPackages = pkgs.linuxPackagesFor (
+  #  pkgs.linux_7_1.override {
+  #    argsOverride = rec {
+  #      version = "7.1";
+  #      modDirVersion = "7.1";
+
+  #      src = pkgs.fetchurl {
+  #        url = "mirror://kernel/linux/kernel/v7.x/linux-${version}.tar.xz";
+  #        sha256 = "sha256-aR9EeX++eQ3IoyFgTJJwh1Jq0nttZJkl1g+O7QolZKA=";
+  #      };
+  #    };
+  #  }
+  #);
 
   # Bootloader.
   boot.loader = {
@@ -73,11 +98,6 @@
     #media-session.enable = true;
   };
 
-  # Bluetooth
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;
-
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -101,7 +121,6 @@
   environment.systemPackages = with pkgs; [
     ccid
     opensc
-    docker
 
     # SDDMの壁紙の設定
     (writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
@@ -109,9 +128,6 @@
       background="${../../assets/flower.png}"
     '')
   ];
-
-  # Docker deamon enable
-  virtualisation.docker.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

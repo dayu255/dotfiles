@@ -7,7 +7,8 @@ let
   lua = lib.generators.mkLuaInline;
 
   dsp = {
-    exec = cmd: lua ''hl.dsp.exec_cmd("${cmd}")'';
+    #exec = cmd: lua ''hl.dsp.exec_cmd("${cmd}")'';
+    exec = cmd: lua "hl.dsp.exec_cmd([[${cmd}]])";
     close = lua "hl.dsp.window.close()";
     exit = lua "hl.dsp.exit()";
     float = lua ''hl.dsp.window.float({ action = "toggle" })'';
@@ -53,7 +54,7 @@ let
     ]
   ) (lib.range 1 10);
 
-  startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
+  startupScript = pkgs.writeShellScriptBin "start" ''
     ${pkgs.hyprpolkitagent}/bin/hyprpolkitagent &
     ${pkgs.waybar}/bin/waybar &
     fcitx5 -d -r &
@@ -64,22 +65,56 @@ in
 {
   # Dependency====================
   home.packages = with pkgs; [
-    kdePackages.dolphin
+    # Filer
+    pkgs.thunar
+
+    # Image Viewer
+    swayimg
+
+    # Screen Shot
     grimblast
-    hyprpolkitagent
-    brightnessctl
-    xdg-desktop-portal-gtk
-    imv
+    satty
     wf-recorder
-    hyprpicker
+    slurp
+
+    # Certification Agent
+    hyprpolkitagent
+
+    # Control brightness CLI
+    brightnessctl
+
+    # Network GUI
     networkmanagerapplet
+
+    # Audio GUI
     pwvucontrol
+
+    # Bluetooth GUI
     overskride
+
+    # Monitor Mirror
     wl-mirror
+
+    # Locker
+    hyprlock
+
+    # Color Picker
+    hyprpicker
+
+    # Desktop Portal
+    xdg-desktop-portal-gtk
   ];
 
-  # ロックするやつ
-  programs.hyprlock.enable = true;
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "image/jpeg" = "swayimg.desktop";
+      "image/png" = "swayimg.desktop";
+      "image/gif" = "swayimg.desktop";
+      "image/webp" = "swayimg.desktop";
+      "image/bmp" = "swayimg.desktop";
+    };
+  };
 
   imports = [
     ../waybar/waybar.nix
@@ -164,6 +199,10 @@ in
             natural_scroll = true;
           };
         };
+
+        xwayland = {
+          force_zero_scaling = true;
+        };
       };
 
       env = [
@@ -242,7 +281,7 @@ in
           float = true;
         }
 
-        # pwvucontrol(オーディオのフロントエンド)
+        # pwvucontrol(Audio GUI)
         {
           match = {
             class = "^com.saivert.pwvucontrol$";
@@ -250,7 +289,7 @@ in
           float = true;
         }
 
-        # overskride(bluetoothのフロントエンド)
+        # overskride(Bluetooth GUI)
         {
           match = {
             class = "^io.github.kaii_lb.Overskride$";
@@ -303,15 +342,22 @@ in
         #(bind "SUPER + G" (dsp.exec "ghostty"))
         (bind "SUPER + K" (dsp.exec "kitty"))
         (bind "SUPER + Z" (dsp.exec "zeditor"))
-        (bind "SUPER + E" (dsp.exec "dolphin"))
+        (bind "SUPER + E" (dsp.exec "thunar"))
         # (bind "SUPER + SPACE" (dsp.exec "rofi -show drun"))
         (bind "SUPER + SPACE" (dsp.exec "walker"))
         (bind "SUPER + CTRL + V" (dsp.exec "walker -m clipboard"))
         (bind "SUPER + M" (dsp.exec "kitty nvim ~/Cortex/00_NOTES/temp.md"))
 
-        # Screenshots
-        (bind "SUPER + CTRL + 4" (dsp.exec "grimblast copysave area"))
-        (bind "SUPER + CTRL + 5" (dsp.exec "grimblast copysave screen"))
+        # Screenshots image
+        (bind "SUPER + CTRL + 4" (
+          dsp.exec "grimblast --freeze save area - | satty --filename - --fullscreen --output-filename ~/Pictures/$(date '+%Y-%m-%d_%H:%M:%S').png"
+        ))
+        # Screenshots movie
+        (bind "SUPER + CTRL + 5" (
+          dsp.exec "wf-recorder -g \"$(slurp)\" -f ~/Videos/record_$(date +%Y%m%d_%H%M%S).mp4"
+        ))
+        # Stop screenshots movie
+        (bind "SUPER + CTRL + 6" (dsp.exec "pkill -SIGINT wf-recorder"))
 
         # Universal copy/paste
         (bind "SUPER + C" (dsp.sendshortcut "CTRL" "Insert"))

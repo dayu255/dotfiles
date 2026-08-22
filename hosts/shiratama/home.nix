@@ -60,8 +60,6 @@ in
     yubikey-manager
     cloudflared
 
-    onlyoffice-desktopeditors
-
     # BenchMark
     oha
 
@@ -136,4 +134,16 @@ in
     pinentry.package = pkgs.pinentry-curses;
     enableZshIntegration = true;
   };
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "x-scheme-handler/http" = "zen.desktop";
+      "x-scheme-handler/https" = "zen.desktop";
+      "x-scheme-handler/discord" = "discord.desktop";
+      "x-scheme-handler/bruno" = "bruno.desktop";
+    };
+  };
+
+  fonts.fontconfig.enable = true;
 }
