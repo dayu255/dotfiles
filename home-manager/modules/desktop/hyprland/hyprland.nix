@@ -66,7 +66,7 @@ in
   # Dependency====================
   home.packages = with pkgs; [
     # Filer
-    pkgs.thunar
+    kdePackages.dolphin
 
     # Image Viewer
     swayimg
@@ -342,7 +342,7 @@ in
         #(bind "SUPER + G" (dsp.exec "ghostty"))
         (bind "SUPER + K" (dsp.exec "kitty"))
         (bind "SUPER + Z" (dsp.exec "zeditor"))
-        (bind "SUPER + E" (dsp.exec "thunar"))
+        (bind "SUPER + E" (dsp.exec "dolphin"))
         # (bind "SUPER + SPACE" (dsp.exec "rofi -show drun"))
         (bind "SUPER + SPACE" (dsp.exec "walker"))
         (bind "SUPER + CTRL + V" (dsp.exec "walker -m clipboard"))

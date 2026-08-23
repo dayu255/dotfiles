@@ -39,11 +39,6 @@
         print -Pn "\e]7;file://%m$PWD\a"
       }
       chpwd_functions=(__wezterm_set_cwd $chpwd_functions)
-
-      # Copilot-CLI
-      if (( $+commands[github-copilot-cli] )); then
-        eval "$(github-copilot-cli alias -- zsh)"
-      fi
     '';
   };
 }

@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   ...
 }:
 {
@@ -28,6 +29,9 @@
       tab_bar_edge = "top";
       tab_bar_style = "fade";
       tab_bar_min_tabs = 2;
+      # Tab title
+      tab_title_template = "{fmt.fg.tab}{'/'.join(tab.active_wd.replace('${config.home.homeDirectory}', '~').split('/')[-2:])}";
+      active_tab_title_template = "{fmt.fg.tab}{'/'.join(tab.active_wd.replace('${config.home.homeDirectory}', '~').split('/')[-2:])}";
 
       # Disable hyperlink
       allow_hyperlinks = "no";
