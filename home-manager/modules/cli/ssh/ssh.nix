@@ -46,6 +46,10 @@
         ServerAliveCountMax = 3;
         AddKeysToAgent = "yes";
         HashKnownHosts = "yes";
+
+        SetEnv = {
+          TERM = "xterm-256color";
+        };
       };
     };
   };
