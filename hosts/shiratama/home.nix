@@ -43,6 +43,7 @@ in
     gimp
     kdePackages.kdenlive
     audacity
+    xnconvert
 
     # File
     qbittorrent
