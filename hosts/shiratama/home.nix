@@ -69,6 +69,7 @@ in
 
     # Contaienr
     podman
+    podman-compose
 
     # Local LLM
     lmstudio

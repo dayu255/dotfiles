@@ -17,11 +17,7 @@ COUNT=$(docker ps -q 2>/dev/null | wc -l | tr -d ' ')
 if [ "$COUNT" -eq 0 ]; then
   echo '{"text": " 0", "tooltip": "No running containers", "class": "docker-none"}'
 else
-  # コンテナ一覧を取得 (paste は使わない)
   NAMES=$(docker ps --format '{{.Names}} ({{.Image}})' 2>/dev/null)
-  
-  # 生の改行を文字列としての "\n" に置換する
   NAMES="${NAMES//$'\n'/\\n}"
-  
   echo "{\"text\": \"  ${COUNT}\", \"tooltip\": \"${NAMES}\", \"class\": \"docker\"}"
 fi

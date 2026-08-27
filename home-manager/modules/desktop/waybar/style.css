@@ -9,7 +9,6 @@
 @define-color purple   #957fb8;
 @define-color mint     #7aa89f;
 
-
 * {
     font-family: HackGen35 Console NF Regular;
     font-size: 10px;
@@ -76,6 +75,11 @@ button {
     padding: 0.5rem 1rem;
     margin: 5px 0;
 }
+#custom-podman {
+    background-color: @bg_primary;
+    padding: 0.5rem 1rem;
+    margin: 5px 0;
+}
 
 #network {
     color: @blue;
@@ -124,7 +128,11 @@ button {
 }
 
 #custom-docker {
-    color: #7fb4ca;
+    color: @blue;
+}
+
+#custom-podman {
+    color: @purple;
 }
 
 #bluetooth {
@@ -160,6 +168,18 @@ button {
 }
 
 #custom-docker.docker-error {
+    color: @red;
+}
+
+#custom-podman.podman {
+    color: @purple;
+}
+
+#custom-podman.podman-none {
+    color: #727169;
+}
+
+#custom-podman.podman-error {
     color: @red;
 }
 
