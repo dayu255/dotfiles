@@ -166,7 +166,17 @@ in
         decoration = {
           rounding = 5;
           active_opacity = 1.00;
-          inactive_opacity = 0.90;
+          # inactive_opacity = 0.925;
+
+          dim_inactive = true;
+          dim_strength = 0.1;
+          shadow = {
+            enabled = true;
+            range = 15;
+            render_power = 3;
+            color = "rgba(00000055)";
+          };
+
           blur = {
             enabled = true;
             size = 3;
@@ -224,13 +234,33 @@ in
             }
           ];
         }
+        {
+          _args = [
+            "overshot"
+            {
+              type = "bezier";
+              points = lua "{ {0.25, 0.9}, {0.1, 1.1} }";
+            }
+          ];
+        }
+        {
+          _args = [
+            "rubber"
+            {
+              type = "spring";
+              mass = 1;
+              stiffness = 70;
+              dampening = 10;
+            }
+          ];
+        }
       ];
 
       animation = [
         {
           leaf = "windows";
           enabled = true;
-          speed = 7;
+          speed = 5;
           bezier = "myBezier";
         }
         {
@@ -322,6 +352,14 @@ in
             "(monitor_w-window_w-30)"
             "65"
           ];
+        }
+
+        # Zen Browser
+        {
+          match = {
+            class = "^zen$";
+            initial_title = "^Zen Browser$";
+          };
         }
       ];
 
@@ -445,6 +483,14 @@ in
         (bind "SUPER + ALT + down" (dsp.moveToMonitor "d"))
       ]
       ++ workspaceBinds;
+
+      gesture = [
+        {
+          fingers = 3;
+          direction = "horizontal";
+          action = "workspace";
+        }
+      ];
     };
   };
 }
