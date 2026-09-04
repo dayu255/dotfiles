@@ -121,10 +121,11 @@
     ];
 
     extensions = [
+      "html"
       "nix"
       "dockerfile"
       "docker-compose"
-      "html"
+      "env"
       "ruby"
       "kanagawa-themes"
       "git-firefly"
@@ -132,6 +133,8 @@
       "astro"
       "lua"
       "harper"
+      "sql"
+      "haskell"
     ];
 
     mutableUserSettings = true;

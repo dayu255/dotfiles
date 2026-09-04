@@ -9,7 +9,7 @@
     settings = {
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
-      pull.rebase = "ff-only";
+      pull.ff = "only";
 
       commit.gpgSign = true;
       user = {
