@@ -6,13 +6,33 @@
 
     userSettings = {
       vim_mode = true;
+      vim = {
+        use_system_clipboard = "always";
+        toggle_relative_line_numbers = false;
+        highlight_on_yank_duration = 150;
+      };
+      vertical_scroll_margin = 8;
       relative_line_numbers = "enabled";
 
+      git = {
+        inline-blame = {
+          enabeld = true;
+          delay_ms = 500;
+        };
+      };
+
+      # File Tree
       project_panel = {
         dock = "left";
       };
+
+      # Buffer
       buffer_font_family = "HackGen35 Console NF";
       buffer_font_size = 14;
+      buffer_line_height = "comfortable";
+      buffer_font_features = {
+        calt = false;
+      };
 
       hide_mouse = "on_typing";
       format_on_save = "on";
@@ -29,13 +49,13 @@
         agent_review = false;
         code_actions = false;
       };
-
       collaboration_panel = {
         button = false;
       };
+
       scrollbar = {
         show = "auto";
-        git_diff = false;
+        git_diff = true;
         diagnostics = "all";
         axes = {
           horizontal = true;
@@ -44,6 +64,10 @@
       };
       minimap = {
         show = "never";
+      };
+
+      tabs = {
+        git_status = true;
       };
 
       terminal = {
@@ -70,7 +94,11 @@
         };
       };
 
-      theme = "Kanagawa";
+      theme = {
+        mode = "dark";
+        light = "Ayu Light";
+        dark = "Kanagawa";
+      };
       #theme = "Catppuccin Macchiato";
     };
 
@@ -112,6 +140,9 @@
       {
         context = "Workspace";
         bindings = {
+          "ctrl-w" = "pane::CloseActiveItem";
+          "ctrl-t" = "workspace::NewFile";
+
           "ctrl-alt-n" = [
             "task::Spawn"
             { task_name = "Run with qrun"; }
@@ -135,9 +166,15 @@
       "harper"
       "sql"
       "haskell"
+
+      # "catppuccin"
+      # "catppuccin-icons"
     ];
 
-    mutableUserSettings = true;
+    mutableUserSettings = false;
+    mutableUserKeymaps = false;
+    mutableUserTasks = false;
+    mutableUserDebug = false;
   };
 
   xdg.configFile."zed/themes/".source = ./themes;

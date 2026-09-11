@@ -27,10 +27,10 @@
   #boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Use stable linux kernel.
-  #boot.kernelPackages = pkgs.linuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages;
 
   # Use linux 7.1
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_7_1;
+  # boot.kernelPackages = pkgs.linuxKernel.packages.linux_7_1;
 
   # Pinning kernel
   #boot.kernelPackages = pkgs.linuxPackagesFor (
@@ -46,6 +46,19 @@
   #    };
   #  }
   #);
+  
+  # Pinning a kernel version
+  #boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linuxKernel.kernels.linux_4_19.override {
+  #  argsOverride = rec {
+  #    src = pkgs.fetchurl {
+  #          url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${version}.tar.xz";
+  #          sha256 = "0ibayrvrnw2lw7si78vdqnr20mm1d3z0g6a0ykndvgn5vdax5x9a";
+  #    };
+  #    version = "4.19.60";
+  #    modDirVersion = "4.19.60";
+  #  };
+  #});
+
 
   # Bootloader.
   boot.loader = {
