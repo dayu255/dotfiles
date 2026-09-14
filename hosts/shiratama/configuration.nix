@@ -28,6 +28,14 @@
 
   # Use stable linux kernel.
   boot.kernelPackages = pkgs.linuxPackages;
+  boot.extraModulePackages = with pkgs; [
+    # 仮想ビデオデバイス
+    linuxPackages.v4l2loopback
+  ];
+  boot.kernelModules = [ "v4l2loopback" ];
+  boot.extraModprobeConfig = ''
+    options v4l2loopback devices=1 video_nr=1 card_label="OBS Virtual Camera" exclusive_caps=1
+  '';
 
   # Use linux 7.1
   # boot.kernelPackages = pkgs.linuxKernel.packages.linux_7_1;
@@ -46,7 +54,7 @@
   #    };
   #  }
   #);
-  
+
   # Pinning a kernel version
   #boot.kernelPackages = pkgs.linuxPackagesFor (pkgs.linuxKernel.kernels.linux_4_19.override {
   #  argsOverride = rec {
@@ -58,7 +66,6 @@
   #    modDirVersion = "4.19.60";
   #  };
   #});
-
 
   # Bootloader.
   boot.loader = {

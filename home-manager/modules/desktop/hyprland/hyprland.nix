@@ -102,6 +102,7 @@ in
     hyprpicker
 
     # Desktop Portal
+    xdg-desktop-portal-hyprland
     xdg-desktop-portal-gtk
   ];
 
@@ -220,6 +221,13 @@ in
           _args = [
             "LANG"
             "ja_JP.UTF-8"
+          ];
+        }
+        # PRIME Offload: iGPU を優先
+        {
+          _args = [
+            "AQ_DRM_DEVICES"
+            "/dev/dri/card1:/dev/dri/card0"
           ];
         }
       ];

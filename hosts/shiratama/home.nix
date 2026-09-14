@@ -40,6 +40,7 @@ in
     wl-clipboard
 
     # Creative
+    obs-studio
     gimp
     kdePackages.kdenlive
     audacity
@@ -52,9 +53,9 @@ in
     harper
 
     # Social
+    discord
     vesktop # ごめんなさい。本当にhyprlandでdiscordがうまくいきませんでした。
     thunderbird
-    discord
     signal-desktop
 
     # Auth/Security
@@ -84,20 +85,20 @@ in
     #texliveBasic
 
     # C/C++
-    gcc
-    gdb
-    gnumake
-    clang-tools
-    ac-library
+    #gcc
+    #gdb
+    #gnumake
+    #clang-tools
+    #ac-library
 
     # Golang
-    go
-    gopls
+    #go
+    #gopls
 
     # JS/TS
-    nodejs
-    typescript
-    bun
+    #nodejs
+    #typescript
+    #bun
 
     # Antigravity
     inputs.antigravity.packages.x86_64-linux.default # Base App
@@ -128,6 +129,9 @@ in
 
     # no gui when enter passphrase
     SSH_ASKPASS_REQUIRE = "never";
+
+    # 画面共有: NVIDIA PRIME で DMA-BUF が壊れるため SHM を強制
+    XDG_DESKTOP_PORTAL_HYPRLAND_FORCE_SHM = "1";
   };
 
   # GPG-agent(passphrase)
@@ -146,6 +150,24 @@ in
       "x-scheme-handler/https" = "zen.desktop";
       "x-scheme-handler/discord" = "discord.desktop";
       "x-scheme-handler/bruno" = "bruno.desktop";
+    };
+  };
+
+  # Vesktop: NixOSのラッパーはflags.confを読まないため、.desktopで直接フラグを渡す
+  xdg.desktopEntries.vesktop = {
+    name = "Vesktop";
+    comment = "Alternative Discord client with Vencord built-in";
+    icon = "vesktop";
+    exec = "vesktop --enable-features=WebRTCPipeWireCapturer %U";
+    categories = [
+      "Network"
+      "InstantMessaging"
+      "Chat"
+    ];
+    mimeType = [ "x-scheme-handler/discord" ];
+    settings = {
+      Keywords = "discord;vencord;electron;chat";
+      StartupWMClass = "Vesktop";
     };
   };
 

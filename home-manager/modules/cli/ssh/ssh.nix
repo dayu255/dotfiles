@@ -11,7 +11,7 @@
       };
 
       "mini" = {
-        HostName = "v6.dayu.jp";
+        HostName = "mini.dayu.jp";
       };
 
       "mini.local" = {
@@ -24,7 +24,7 @@
       };
 
       "mini*" = lib.hm.dag.entryAfter [ "mini" "mini.local" "mini.cloudflared" ] {
-        User = "odayu";
+        User = "dayu";
         Port = 22;
         StrictHostKeyChecking = "yes";
         UserKnownHostsFile = "${./keys/mini.pub}";
