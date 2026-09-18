@@ -68,6 +68,9 @@ in
     # Filer
     kdePackages.dolphin
 
+    # Clip-Board
+    wl-clipboard
+
     # Image Viewer
     swayimg
 

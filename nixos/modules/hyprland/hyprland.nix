@@ -36,7 +36,4 @@
       common.default = [ "gtk" ];
     };
   };
-
-  # services.xremap.withWlroots = true; # for xremap to work with wlroots
-  # security.pam.services.swaylock.text = "auth include login";
 }

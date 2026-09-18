@@ -31,13 +31,12 @@ in
 
   home.packages = with pkgs; [
     # Browser
-    google-chrome
+    chromium
     # ZenBrowser!!!
     inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
 
     # Editer
     vscode
-    wl-clipboard
 
     # Creative
     obs-studio
@@ -84,21 +83,8 @@ in
     # LaTeX
     #texliveBasic
 
-    # C/C++
-    #gcc
-    #gdb
-    #gnumake
-    #clang-tools
-    #ac-library
-
-    # Golang
-    #go
-    #gopls
-
-    # JS/TS
-    #nodejs
-    #typescript
-    #bun
+    # Go LSP
+    gopls
 
     # Antigravity
     inputs.antigravity.packages.x86_64-linux.default # Base App

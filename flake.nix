@@ -26,7 +26,6 @@
     # Walker
     walker = {
       url = "github:abenz1267/walker";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     # Zen-Browser

@@ -14,6 +14,8 @@
       vertical_scroll_margin = 8;
       relative_line_numbers = "enabled";
 
+      cursor_animation.enable = true;
+
       git = {
         inline-blame = {
           enabeld = true;
