@@ -45,7 +45,7 @@ empty_symbol = "󰂎 "
 [[battery.display]] # バッテリー容量が0～10%の時
 threshold = 10
 style = "bold red"
- 
+
 [[battery.display]] # バッテリー容量が10～20%の時
 threshold = 20
 style = 'bold #ffa500'

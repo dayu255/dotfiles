@@ -7,8 +7,6 @@
   networking.hostName = "shiratama"; # Define your hostname.
 
   imports = [
-    # Input
-    ../../nixos/modules/input/input.nix
     # Font
     ../../nixos/modules/font/font.nix
     # Bluetooth

@@ -39,6 +39,12 @@
       url = "github:jacopone/antigravity-nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    # Hazkey
+    nix-hazkey = {
+      url = "github:aster-void/nix-hazkey";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs =

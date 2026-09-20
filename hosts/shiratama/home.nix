@@ -72,7 +72,7 @@ in
     podman-compose
 
     # Local LLM
-    lmstudio
+    # lmstudio
 
     # Unity
     #unityhub

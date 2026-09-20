@@ -14,7 +14,8 @@
       vertical_scroll_margin = 8;
       relative_line_numbers = "enabled";
 
-      cursor_animation.enable = true;
+      # カーソルアニメーション
+      cursor_animation.enabled = true;
 
       git = {
         inline-blame = {

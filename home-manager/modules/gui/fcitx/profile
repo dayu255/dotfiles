@@ -1,11 +1,15 @@
 [Groups/0]
-Name=デフォルト
+Name=Default
 Default Layout=jp
-DefaultIM=mozc
+Default IM=hazkey
 
 [Groups/0/Items/0]
-Name=mozc
+Name=keyboard-jp
+Layout=
+
+[Groups/0/Items/1]
+Name=hazkey
 Layout=
 
 [GroupOrder]
-0=デフォルト
+0=Default
