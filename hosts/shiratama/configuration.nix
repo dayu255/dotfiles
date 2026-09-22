@@ -82,6 +82,13 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # mDNS
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
   # Enables wireless support via wpa_supplicant.
   #networking.wireless.enable = true;
 

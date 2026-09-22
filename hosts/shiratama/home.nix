@@ -21,6 +21,9 @@ in
     ../../home-manager/modules/gui/wezterm/wezterm.nix
     ../../home-manager/modules/gui/kitty/kitty.nix
     ../../home-manager/modules/gui/fcitx/fcitx.nix
+
+    # Codex
+    ../../home-manager/modules/cli/codex/codex.nix
   ];
 
   home.username = "${username}";
@@ -86,10 +89,9 @@ in
     # Go LSP
     gopls
 
-    # Antigravity
-    inputs.antigravity.packages.x86_64-linux.default # Base App
-    inputs.antigravity.packages.x86_64-linux.google-antigravity-ide # IDE
-    inputs.antigravity.packages.x86_64-linux.google-antigravity-cli # CLI
+    # VNC Client
+    #tigervnc
+    remmina
 
     # Homemade pkgs
     qrun

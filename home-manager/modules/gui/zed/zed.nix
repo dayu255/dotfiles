@@ -18,8 +18,8 @@
       cursor_animation.enabled = true;
 
       git = {
-        inline-blame = {
-          enabeld = true;
+        inline_blame = {
+          enabled = true;
           delay_ms = 500;
         };
       };
@@ -28,6 +28,17 @@
       project_panel = {
         dock = "left";
       };
+
+      # Agent
+      disable_ai = false;
+      agent = {
+        enabled = true;
+        button = true;
+        dock = "right";
+      };
+
+      # インラインAI
+      show_edit_predictions = false;
 
       # Buffer
       buffer_font_family = "HackGen35 Console NF";
@@ -42,7 +53,6 @@
 
       ui_font_family = "sans-serif";
       ui_font_size = 15;
-      disable_ai = true;
       use_system_path_prompts = false;
 
       toolbar = {
@@ -174,7 +184,7 @@
       # "catppuccin-icons"
     ];
 
-    mutableUserSettings = false;
+    mutableUserSettings = true;
     mutableUserKeymaps = false;
     mutableUserTasks = false;
     mutableUserDebug = false;

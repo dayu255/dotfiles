@@ -34,12 +34,6 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    # Antigravity
-    antigravity = {
-      url = "github:jacopone/antigravity-nix";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     # Hazkey
     nix-hazkey = {
       url = "github:aster-void/nix-hazkey";
@@ -56,7 +50,6 @@
       plasma-manager,
       walker,
       zen-browser,
-      antigravity,
       ...
     }@inputs:
     let
