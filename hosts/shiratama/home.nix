@@ -24,6 +24,7 @@ in
 
     # Codex
     ../../home-manager/modules/cli/codex/codex.nix
+    #../../home-manager/modules/gui/codex-desktop/codex-desktop.nix
   ];
 
   home.username = "${username}";

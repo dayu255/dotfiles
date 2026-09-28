@@ -39,6 +39,11 @@
       url = "github:aster-void/nix-hazkey";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    codex-desktop-linux = {
+      url = "github:ilysenko/codex-desktop-linux";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs =
@@ -50,6 +55,7 @@
       plasma-manager,
       walker,
       zen-browser,
+      codex-desktop-linux,
       ...
     }@inputs:
     let
@@ -102,6 +108,7 @@
             ./hosts/shiratama/home.nix
             plasma-manager.homeModules.plasma-manager
             inputs.walker.homeManagerModules.default
+            inputs.codex-desktop-linux.homeManagerModules.default
           ];
         };
       };
