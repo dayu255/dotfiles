@@ -308,6 +308,14 @@ in
       ];
 
       window_rule = [
+        # Kitty の最大化要求を無視して、通常のタイル配置を維持する
+        {
+          match = {
+            class = "^kitty$";
+          };
+          suppress_event = "maximize";
+        }
+
         # Network Manager Applet
         {
           match = {
