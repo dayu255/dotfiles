@@ -8,14 +8,16 @@
     settings = {
       splash = false;
       preload = [
-        "~/.config/wallpapers/wallpaper.png"
+        "~/.config/hrprpaper/wallpaper.png"
+        "~/.config/hyprpaper/IMG_0086.JPEG"
         "${../../../../assets/cherry_blossom_night.jpeg}"
       ];
       wallpaper = [
         {
           monitor = "";
-          # path = "~/.config/wallpapers/wallpaper.png";
-          path = "${../../../../assets/cherry_blossom_night.jpeg}";
+          path = "~/.config/hyprpaper/IMG_0086.JPEG";
+          # path = "~/.config/hyprpaper/wallpaper.png";
+          # path = "${../../../../assets/cherry_blossom_night.jpeg}";
         }
       ];
     };

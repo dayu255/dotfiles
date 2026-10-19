@@ -65,16 +65,13 @@ button {
 #network,
 #cpu,
 #memory,
+#temperature,
 #custom-lock,
 #custom-power,
 #custom-weather,
 #custom-uptime,
 #custom-ip,
-#custom-docker {
-    background-color: @bg_primary;
-    padding: 0.5rem 1rem;
-    margin: 5px 0;
-}
+#custom-docker,
 #custom-podman {
     background-color: @bg_primary;
     padding: 0.5rem 1rem;
@@ -83,6 +80,8 @@ button {
 
 #network {
     color: @blue;
+    border-radius: 5px;
+    margin-left: 5px;
 }
 
 #clock {
