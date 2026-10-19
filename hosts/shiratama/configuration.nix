@@ -12,9 +12,9 @@
     # Bluetooth
     ../../nixos/modules/bluetooth/bluetooth.nix
     # Desktop
+    ../../nixos/modules/sddm/sddm.nix
     ../../nixos/modules/hyprland/hyprland.nix
     ../../nixos/modules/plasma/plasma.nix
-    ../../nixos/modules/sddm/sddm.nix
     # Nvidia
     ../../nixos/modules/nvidia/nvidia.nix
     # Docker

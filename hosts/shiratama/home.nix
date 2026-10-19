@@ -71,6 +71,8 @@ in
     # API Client
     bruno
 
+    handbrake
+
     # Contaienr
     podman
     podman-compose

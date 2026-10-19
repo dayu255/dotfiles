@@ -30,7 +30,7 @@
 
     # Zen-Browser
     zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
+      url = "github:youwen5/zen-browser-flake/4bbcd79d8104040a2e510f81199210070900ebcd";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 

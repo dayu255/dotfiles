@@ -157,6 +157,11 @@ in
       ];
 
       config = {
+        debug = {
+          # 次回のフリーズ時に入力処理・描画処理の直前のログを残す。
+          disable_logs = false;
+        };
+
         general = {
           gaps_in = 4;
           gaps_out = 4;

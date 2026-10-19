@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ -e "flake.nix" ]; then
     echo "flake.nix is already exist"

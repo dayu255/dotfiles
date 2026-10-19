@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 CONFIG_FILE="$(pwd)/config.jsonc"
 STYLE_FILE="$(pwd)/style.css"

@@ -1,4 +1,5 @@
-#!/bin/bash -e
+#!/usr/bin/env bash
+set -e
 
 TEMP_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/qrun/"
 CACHE_AMOUNT=30
