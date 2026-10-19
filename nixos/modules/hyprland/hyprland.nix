@@ -1,11 +1,17 @@
 {
+  inputs,
   pkgs,
   ...
 }:
-
+let
+  # Home Managerと同じnixpkgs-unstableのHyprlandとportalを使う。
+  pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+in
 {
   programs.hyprland = {
     enable = true;
+    package = pkgs-unstable.hyprland;
+    portalPackage = pkgs-unstable.xdg-desktop-portal-hyprland;
   };
 
   environment.systemPackages = [
@@ -17,7 +23,6 @@
   xdg.portal = {
     enable = true;
     extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
     ];
     xdgOpenUsePortal = true;
