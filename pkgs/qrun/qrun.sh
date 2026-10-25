@@ -86,7 +86,7 @@ if [ ! -f "${TEMP_DIR}${HASH}" ] || [ "$NO_CACHE" -eq 1 ]; then
     time (
       cd "${WORK_DIR}" || exit 1
       case "$1" in
-      *.c) gcc -fdiagnostics-color=always -ansi -Wall -pedantic -o "${TMP_BIN}" "${SRC_FILE}" 2>"${ERR_LOG}" ;;
+      *.c) gcc -fdiagnostics-color=always -Wall -pedantic -o "${TMP_BIN}" "${SRC_FILE}" 2>"${ERR_LOG}" ;;
       *.cpp) g++ -fdiagnostics-color=always -std=c++23 -o "${TMP_BIN}" "${SRC_FILE}" 2>"${ERR_LOG}" ;;
       *.rs) rustc --color always -o "${TMP_BIN}" "${SRC_FILE}" 2>"${ERR_LOG}" ;;
       *.hs) ghc -fdiagnostics-color=always -outputdir . -o "${TMP_BIN}" "${SRC_FILE}" 2>"${ERR_LOG}" ;;
@@ -100,7 +100,7 @@ if [ ! -f "${TEMP_DIR}${HASH}" ] || [ "$NO_CACHE" -eq 1 ]; then
     (
       cd "${WORK_DIR}" || exit 1
       case "$1" in
-      *.c) gcc -fdiagnostics-color=always -ansi -Wall -pedantic -o "${TMP_BIN}" "${SRC_FILE}" 2>"${ERR_LOG}" ;;
+      *.c) gcc -fdiagnostics-color=always -Wall -pedantic -o "${TMP_BIN}" "${SRC_FILE}" 2>"${ERR_LOG}" ;;
       *.cpp) g++ -fdiagnostics-color=always -std=c++23 -o "${TMP_BIN}" "${SRC_FILE}" 2>"${ERR_LOG}" ;;
       *.rs) rustc --color always -o "${TMP_BIN}" "${SRC_FILE}" 2>"${ERR_LOG}" ;;
       *.hs) ghc -fdiagnostics-color=always -outputdir . -o "${TMP_BIN}" "${SRC_FILE}" 2>"${ERR_LOG}" ;;

@@ -400,12 +400,10 @@ in
       bind = [
         # App launchers
         (bind "SUPER + B" (dsp.exec "zen"))
-        #(bind "SUPER + W" (dsp.exec "wezterm-gui"))
-        #(bind "SUPER + G" (dsp.exec "ghostty"))
         (bind "SUPER + K" (dsp.exec "kitty"))
         (bind "SUPER + Z" (dsp.exec "zeditor"))
         (bind "SUPER + E" (dsp.exec "dolphin"))
-        # (bind "SUPER + SPACE" (dsp.exec "rofi -show drun"))
+        (bind "SUPER + V" (dsp.exec "vesktop"))
         (bind "SUPER + SPACE" (dsp.exec "walker"))
         (bind "SUPER + CTRL + V" (dsp.exec "walker -m clipboard"))
         (bind "SUPER + M" (dsp.exec "kitty nvim ~/Cortex/00_NOTES/temp.md"))
