@@ -164,7 +164,7 @@ in
 
         general = {
           gaps_in = 4;
-          gaps_out = 4;
+          gaps_out = 6;
           border_size = 2;
           col = {
             active_border = "rgb(957fb8)";
